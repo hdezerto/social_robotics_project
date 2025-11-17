@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Who Wants to Be a Furllionaire?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Intro overlay: plays animation + music, then reveals the app card -->
+    <div id="intro">
+        <!-- Background intro video (place file at video/intro.mp4 or change src) -->
+        <video id="intro-video" src="video/intro.mp4" playsinline preload="auto"></video>
+
+        <div class="intro-inner">
+            <div class="intro-logo">Who Wants to Be a <span>Furllionaire?</span></div>
+        </div>
+
+        <!-- fallback overlay shown when autoplay is blocked; clicking it will start the video (video now contains audio) -->
+        <button id="intro-play-overlay" class="intro-play-overlay" aria-label="Play intro">Tap to play</button>
+    </div>
+
+    <!-- Feedback sounds for answers (place files at audio/correct.mp3 and audio/incorrect.mp3) -->
+    <audio id="correct-sound" src="audio/correct.mp3" preload="auto"></audio>
+    <audio id="incorrect-sound" src="audio/incorrect.mp3" preload="auto"></audio>
+
+    <div id="app">
+        <!-- Start screen shown after intro ends and before quiz starts -->
+        <div id="start-screen">
+            <button id="start-session" class="start-main-btn">Start Quiz</button>
+        </div>
+
+        <div class="content" aria-hidden="true">
+            <header class="top-bar">
+                <div class="logo">Who Wants to Be a <span>Furllionaire?</span></div>
+                <div class="status">
+                    <span id="question-counter">Question 1 / 8</span>
+                    <span id="timer">60s</span>
+                </div>
+            </header>
+
+            <main class="main-card">
+                <div class="question-text" id="question-text">
+                    <!-- question text will be injected when quiz starts -->
+                </div>
+
+                <div class="answers">
+                    <button class="answer-btn" data-index="0" id="answer-0">A)</button>
+                    <button class="answer-btn" data-index="1" id="answer-1">B)</button>
+                    <button class="answer-btn" data-index="2" id="answer-2">C)</button>
+                    <button class="answer-btn" data-index="3" id="answer-3">D)</button>
+                </div>
+
+            </main>
+
+            <!-- End screen shown inside the card after the quiz finishes -->
+            <div id="end-screen" class="main-card" style="display:none; align-items:center; justify-content:center;">
+                <p class="end-message">Thank you for playing Who Wants to Be a Furllionaire?</p>
+            </div>
+
+        </div>
+    </div>
+
+        <!-- End screen shown after quiz finishes -->
+        <div id="end-screen" style="display:none">
+            <p class="end-message">Thank you for playing Who Wants to Be a Furllionaire?</p>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
