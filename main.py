@@ -12,7 +12,7 @@ from logs.logger import Logger
 def main():
     gui = QuizGUI()
     db = QuestionDatabase('database/questions.json')
-    furhat = FurhatAPI()
+    furhat = FurhatAPI("192.168.1.110")
     llm = LLMAPI(api_key='YOUR_API_KEY')
     logger = Logger('logs/experiment_log.csv')
     controller = ExperimentController(gui, db, furhat, llm, logger)
