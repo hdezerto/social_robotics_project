@@ -2,3 +2,4 @@
 openai
 furhat-remote-api
 PyQt5
+mistralai
