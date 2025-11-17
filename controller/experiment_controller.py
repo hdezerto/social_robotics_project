@@ -1,7 +1,6 @@
 # Experiment Controller
 # Manages experiment flow and interaction modes
 
-from furhat_interface.furhat_api import FurhatAPI
 
 class ExperimentController:
     def __init__(self, gui, db, furhat, llm, logger, check_relevance=True):

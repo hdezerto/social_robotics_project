@@ -14,15 +14,18 @@ class FurhatAPI:
         self.ws = None
         self.speech_callback = None
 
+
     def speak(self, text):
         url = f"{self.base_url}/tts/say"
         payload = {"text": text}
         requests.post(url, json=payload)
 
+
     def set_expression(self, expression):
         url = f"{self.base_url}/face/set"
         payload = {"emotion": expression}
         requests.post(url, json=payload)
+
 
     def listen_speech(self, callback):
         """
