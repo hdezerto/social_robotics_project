@@ -1,0 +1,48 @@
+{
+  "easy": [
+    {
+      "question": "What is the capital of France?",
+      "options": ["Berlin", "London", "Paris", "Rome"],
+      "answer": 3
+    },
+    {
+      "question": "What color is the sky on a clear day?",
+      "options": ["Blue", "Green", "Red", "Yellow"],
+      "answer": 1
+    }
+  ],
+  "medium": [
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "options": ["Earth", "Mars", "Jupiter", "Venus"],
+      "answer": 2
+    },
+    {
+      "question": "Who wrote 'Romeo and Juliet'?",
+      "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+      "answer": 2
+    },
+    {
+      "question": "What is H2O commonly known as?",
+      "options": ["Salt", "Water", "Oxygen", "Hydrogen"],
+      "answer": 2
+    },
+    {
+      "question": "Which continent is Egypt in?",
+      "options": ["Asia", "Africa", "Europe", "Australia"],
+      "answer": 2
+    }
+  ],
+  "hard": [
+    {
+      "question": "What is the derivative of sin(x)?",
+      "options": ["cos(x)", "-sin(x)", "-cos(x)", "sin(x)"],
+      "answer": 1
+    },
+    {
+      "question": "Who developed the theory of relativity?",
+      "options": ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"],
+      "answer": 2
+    }
+  ]
+}

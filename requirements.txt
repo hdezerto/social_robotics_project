@@ -1,0 +1,4 @@
+# Python dependencies
+openai
+furhat-remote-api
+PyQt5
