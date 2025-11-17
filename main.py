@@ -23,10 +23,8 @@ def main():
     gui_thread.daemon = True
     gui_thread.start()
 
-    controller.run_experiment()
+    controller.run_experiment() # Runs in the main thread
 
-    # Keep main thread alive until GUI is closed
-    gui.root.mainloop()
 
 if __name__ == "__main__":
     main()

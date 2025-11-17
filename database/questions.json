@@ -3,46 +3,78 @@
     {
       "question": "What is the capital of France?",
       "options": ["Berlin", "London", "Paris", "Rome"],
-      "answer": 3
+      "answer": 3,
+      "hints": [
+        "It's also known as the city of lights.",
+        "It is famous for the Eiffel Tower."
+      ]
     },
     {
       "question": "What color is the sky on a clear day?",
       "options": ["Blue", "Green", "Red", "Yellow"],
-      "answer": 1
+      "answer": 1,
+      "hints": [
+        "It's the same color as the ocean.",
+        "It's not green, red, or yellow."
+      ]
     }
   ],
   "medium": [
     {
       "question": "Which planet is known as the Red Planet?",
       "options": ["Earth", "Mars", "Jupiter", "Venus"],
-      "answer": 2
+      "answer": 2,
+      "hints": [
+        "This planet is named after the Roman god of war.",
+        "Its surface is covered in iron oxide, giving it a reddish color."
+      ]
     },
     {
       "question": "Who wrote 'Romeo and Juliet'?",
       "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
-      "answer": 2
+      "answer": 2,
+      "hints": [
+        "He is an English playwright and poet.",
+        "He also wrote Hamlet and Macbeth."
+      ]
     },
     {
       "question": "What is H2O commonly known as?",
       "options": ["Salt", "Water", "Oxygen", "Hydrogen"],
-      "answer": 2
+      "answer": 2,
+      "hints": [
+        "It covers about 71% of Earth's surface.",
+        "It's essential for all known forms of life."
+      ]
     },
     {
       "question": "Which continent is Egypt in?",
       "options": ["Asia", "Africa", "Europe", "Australia"],
-      "answer": 2
+      "answer": 2,
+      "hints": [
+        "It is the second largest continent.",
+        "The Nile River flows through this continent."
+      ]
     }
   ],
   "hard": [
     {
       "question": "What is the derivative of sin(x)?",
       "options": ["cos(x)", "-sin(x)", "-cos(x)", "sin(x)"],
-      "answer": 1
+      "answer": 1,
+      "hints": [
+        "The derivative of a trigonometric function can be another trigonometric function.",
+        "It's the function that describes the slope of sin(x) at any point."
+      ]
     },
     {
       "question": "Who developed the theory of relativity?",
       "options": ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"],
-      "answer": 2
+      "answer": 2,
+      "hints": [
+        "He was a German-born theoretical physicist.",
+        "His famous equation is E=mc^2."
+      ]
     }
   ]
 }

@@ -6,27 +6,28 @@ from tkinter import messagebox
 
 class QuizGUI:
     def __init__(self):
-        self.root = tk.Tk()
-        self.root.title("Quiz Game")
-        self.question_label = tk.Label(self.root, text="", font=("Arial", 14))
-        self.question_label.pack(pady=10)
-        self.options_var = tk.StringVar()
-        self.options_frame = tk.Frame(self.root)
-        self.options_frame.pack(pady=10)
-        self.submit_button = tk.Button(self.root, text="Submit", command=self._submit_answer)
-        self.submit_button.pack(pady=10)
-        self.answer = None
-        self._answer_ready = tk.BooleanVar(value=False)
+        self.root = tk.Tk() # Main window
+        self.root.title("Quiz Game") # Set window title
+        self.question_label = tk.Label(self.root, text="", font=("Arial", 14)) # Label for question text
+        self.question_label.pack(pady=10) # Adds the question label to the window with padding
+        self.options_var = tk.StringVar() # Variable to hold selected option
+        self.options_frame = tk.Frame(self.root) # Frame for option buttons
+        self.options_frame.pack(pady=10)  # Adds the options frame to the window with padding
+        self.submit_button = tk.Button(self.root, text="Submit", command=self._submit_answer) # Submit button, calls _submit_answer on click
+        self.submit_button.pack(pady=10) # Adds the submit button to the window with padding
+        self.answer = None # Stores the user's selected answer
+        self._answer_ready = tk.BooleanVar(value=False) # Indicates if an answer has been submitted
 
     def display_question(self, question, options):
-        self.question_label.config(text=question)
-        self.options_var.set("")
-        for widget in self.options_frame.winfo_children():
+        self.question_label.config(text=question) # Update question text with the new question
+        self.options_var.set("") # Resets the selected option to nothing
+        # For each option, creates a radio button with the option text, links it to options_var, sets its value, and adds it to the frame.
+        for widget in self.options_frame.winfo_children(): # Removes any existing radio buttons from the options frame
             widget.destroy()
         for idx, opt in enumerate(options):
             btn = tk.Radiobutton(self.options_frame, text=opt, variable=self.options_var, value=str(idx+1), font=("Arial", 12))
             btn.pack(anchor='w')
-        self._answer_ready.set(False)
+        self._answer_ready.set(False) # Resets the answer-ready flag to False (no answer submitted yet)
 
     def _submit_answer(self):
         if self.options_var.get():
