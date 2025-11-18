@@ -7,13 +7,14 @@ from furhat_interface.furhat_api import FurhatAPI
 from llm_backend.llm_api import LLMAPI
 from controller.experiment_controller import ExperimentController
 from logs.logger import Logger
+import os
 
 
 def main():
     gui = QuizGUI()
     db = QuestionDatabase('database/questions.json')
     furhat = FurhatAPI("192.168.1.110")
-    llm = LLMAPI(api_key='YOUR_API_KEY')
+    llm = LLMAPI(api_key=os.getenv("MISTRAL_LLM_API_KEY"))
     logger = Logger('logs/experiment_log.csv')
     controller = ExperimentController(gui, db, furhat, llm, logger)
 

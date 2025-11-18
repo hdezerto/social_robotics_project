@@ -10,30 +10,56 @@ class LLMAPI:
         self.client = Mistral(api_key=api_key)
 
 
-    def get_tip_and_expression(self, question, options, user_request=None, fake_response=True):
+    def generate_assistant_response(self, question, options, user_request=None, check_relevance=False, fake_response=True):
         # For demo, return a dummy tip and expression
         if fake_response:
             tip = "Consider eliminating obviously wrong answers."
             expression = "smile"
             return tip, expression
 
+        if check_relevance:
+            system_prompt = f"""
+            Is the user text related to asking for help or to quiz questions? 
+            Respond with ONLY "True" if yes, and else ONLY "False".
+            """
+
+            chat_response = self.client.chat.complete(
+                model= self.model,
+                messages = [
+                    {
+                        "role": "system",
+                        "content": system_prompt,                   
+                    },
+                    {
+                        "role": "user",
+                        "content": user_request,
+                    },
+                ]
+            )
+
+            if chat_response.choices[0].message.content == "False":
+                return None, None
+        
+        format = '{"tip": <tip>, "expression": <expression>}'
+        
+        system_prompt = f"""
+            You are a Furhat robot helping a user with a quiz question: "{question}" with options "{options}". 
+            
+            Give the user strategic advice only, do not reveal the answer. 
+            Respond in max 20 words in the following format: {format}. With:
+            - tip: advice for text-to-speech 
+            - expression: one of [BigSmile, Blink, BrowFrown, BrowRaise, CloseEyes, ExpressAnger, ExpressDisgust, ExpressFear, ExpressSad, GazeAway, Nod, Oh, OpenEyes, Roll, Shake, Smile, Surprise, Thoughtful, Wink] 
+            """
+        
+        if user_request is None:
+           user_request = "Help me with the question!"
+
         chat_response = self.client.chat.complete(
             model= self.model,
             messages = [
                 {
                     "role": "system",
-                    "content": "You are a furhat robot providing assistance to a user who is \
-                        answering a quiz. It is very important that you do not give away the \
-                        answer to the quiz directly, \
-                        instead give strategic advice on how the user could think. Please \
-                        write a response with max 20 words to the given question in the following format: \
-                        {\"tip\": <tip>, \"expression\": <expression>}, where tip is \
-                        your advice to the user in a format that works for text-to-speech, \
-                        and expression if you chosen appropriate expression out of the \
-                        following:\
-                            BigSmile, Blink, BrowFrown, BrowRaise, CloseEyes, ExpressAnger \
-                            ExpressDisgust, ExpressFear, ExpressSad, GazeAway, Nod, Oh \
-                            OpenEyes, Roll, Shake, Smile, Surprise, Thoughtful, Wink"                        
+                    "content": system_prompt,                   
                 },
                 {
                     "role": "user",
