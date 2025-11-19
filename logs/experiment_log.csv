@@ -15,3 +15,22 @@ timestamp,event_type,details
 2025-11-19T10:48:14.001371,question_displayed,Which continent is Egypt in?
 2025-11-19T10:48:14.004082,user_answer,3
 2025-11-19T10:48:14.012336,question_displayed,What is the derivative of sin(x)?
+2025-11-19T11:33:33.767876,mode_selected,reactive
+2025-11-19T11:33:33.893867,question_displayed,What is the capital of France?
+2025-11-19T11:33:39.806260,robot_response,This is a placeholder response.
+2025-11-19T11:33:49.654236,robot_response,This is a placeholder response.
+2025-11-19T11:34:08.776980,user_answer,1
+2025-11-19T11:34:08.780667,question_displayed,What color is the sky on a clear day?
+2025-11-19T11:34:08.783733,user_answer,1
+2025-11-19T11:34:08.793333,question_displayed,Who wrote 'Romeo and Juliet'?
+2025-11-19T11:34:11.261804,user_answer,1
+2025-11-19T11:34:11.264846,question_displayed,What is H2O commonly known as?
+2025-11-19T11:34:11.267653,user_answer,1
+2025-11-19T11:34:11.278984,question_displayed,Which continent is Egypt in?
+2025-11-19T11:34:18.149089,robot_response,This is a placeholder response.
+2025-11-19T11:36:08.335238,mode_selected,reactive
+2025-11-19T11:36:08.442699,question_displayed,What is the capital of France?
+2025-11-19T11:36:17.814386,user_answer,1
+2025-11-19T11:36:17.818283,question_displayed,What color is the sky on a clear day?
+2025-11-19T11:36:17.822216,user_answer,1
+2025-11-19T11:36:17.830462,question_displayed,Who wrote 'Romeo and Juliet'?
