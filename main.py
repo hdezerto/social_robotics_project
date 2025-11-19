@@ -1,7 +1,7 @@
 # Main entry point
 # Initializes modules and starts experiment
 
-from gui.quiz_gui import QuizGUI
+from gui.web_gui import WebQuizGUI
 from database.database import QuestionDatabase
 from furhat_interface.furhat_api import FurhatAPI
 from llm_backend.llm_api import LLMAPI
@@ -11,7 +11,7 @@ import threading
 
 
 def main():
-    gui = QuizGUI()
+    gui = WebQuizGUI(expected_questions=8)
     db = QuestionDatabase('database/questions.json')
     furhat = FurhatAPI("192.168.1.110")
     allowed_expressions = [

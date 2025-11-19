@@ -31,11 +31,11 @@ The Furhat Game Assistant is an interactive quiz game designed to run on the Fur
 	- Microphone and speakers
 
 ### Usage
-To start the game assistant:
+To start the game assistant (launches the Furllionaire web GUI on http://127.0.0.1:5000):
 ```powershell
 python main.py
 ```
-For GUI:
+The legacy Tkinter GUI is still available for quick local testing:
 ```powershell
 python gui/quiz_gui.py
 ```
@@ -52,7 +52,7 @@ python debug_furhat_speak.py
 - `gui/` — Graphical user interface
 - `llm_backend/` — Large language model backend
 - `logs/` — Experiment logs
-- `DIOGO_furllionaire-gui/` — Web GUI resources
+- `gui/web_client/` — Furllionaire web GUI assets served by Flask
 
 ### Contributors
 - Cilia Nanninga

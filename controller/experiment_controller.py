@@ -68,6 +68,11 @@ class ExperimentController:
             print("---")
         print("Experiment finished.")
         self.logger.log_event({"event_type": "experiment_finished", "details": "done"})
+        if hasattr(self.gui, "notify_experiment_finished"):
+            try:
+                self.gui.notify_experiment_finished()
+            except Exception as exc:
+                print(f"Error notifying GUI about experiment completion: {exc}")
         # Stop Furhat speech listener
         try:
             self.furhat.stop_listening()

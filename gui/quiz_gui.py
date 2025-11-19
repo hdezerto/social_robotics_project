@@ -45,5 +45,14 @@ class QuizGUI:
         return self.answer
 
 
+    def notify_experiment_finished(self):
+        def update_ui():
+            for widget in self.options_frame.winfo_children():
+                widget.destroy()
+            self.question_label.config(text="Experiment finished. Thank you!")
+            messagebox.showinfo("Experiment", "Experiment finished. Thank you for participating!")
+
+        self.root.after(0, update_ui)
+
     def start(self):
         self.root.mainloop()
