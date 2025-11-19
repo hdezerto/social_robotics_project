@@ -1,1 +1,17 @@
 timestamp,event_type,details
+2025-11-19T10:47:58.868311,mode_selected,reactive
+2025-11-19T10:47:58.957017,question_displayed,What color is the sky on a clear day?
+2025-11-19T10:48:03.511179,robot_response,This is a placeholder response.
+2025-11-19T10:48:05.192572,user_answer,1
+2025-11-19T10:48:05.194722,question_displayed,What is the capital of France?
+2025-11-19T10:48:05.197438,user_answer,1
+2025-11-19T10:48:05.204835,question_displayed,Which planet is known as the Red Planet?
+2025-11-19T10:48:10.625477,user_answer,3
+2025-11-19T10:48:10.627750,question_displayed,What is H2O commonly known as?
+2025-11-19T10:48:10.630076,user_answer,3
+2025-11-19T10:48:10.636212,question_displayed,Who wrote 'Romeo and Juliet'?
+2025-11-19T10:48:11.186721,robot_response,This is a placeholder response.
+2025-11-19T10:48:13.998772,user_answer,3
+2025-11-19T10:48:14.001371,question_displayed,Which continent is Egypt in?
+2025-11-19T10:48:14.004082,user_answer,3
+2025-11-19T10:48:14.012336,question_displayed,What is the derivative of sin(x)?
