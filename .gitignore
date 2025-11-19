@@ -2,3 +2,5 @@
 venv/
 # Ignore Python cache folders
 __pycache__/
+# Experiment log file
+logs/experiment_log.csv
