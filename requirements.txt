@@ -1,4 +1,3 @@
 # Python dependencies
-openai
+websockets
 furhat-realtime-api
-PyQt5

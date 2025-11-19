@@ -13,7 +13,7 @@ import threading
 def main():
     gui = QuizGUI()
     db = QuestionDatabase('database/questions.json')
-    furhat = FurhatAPI("192.168.1.110")
+    furhat = FurhatAPI("192.168.1.175")
     allowed_expressions = [
         "neutral",
         "happy",
