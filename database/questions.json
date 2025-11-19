@@ -10,6 +10,60 @@
       ]
     },
     {
+      "question": "How many eyes does a dice have?",
+      "options": ["6", "11", "18", "21"],
+      "answer": 4,
+      "hints": [
+        "A dice has 6 sides.",
+        "The lowest number of eyes on one side is 1 and the highest 6."
+      ]
+    },
+    {
+      "question": "Which game uses colored pieces that fall from the top of the screen?",
+      "options": ["Pac-Man", "Tetris", "Minecraft", "Fortnite"],
+      "answer": 2,
+      "hints": [
+        "It involves fitting shapes together.",
+        "It was created in the Soviet Union."
+      ]
+    },
+    {
+      "question": "How many corners does a square have",
+      "options": ["2", "3", "4", "5"],
+      "answer": 2,
+      "hints": [
+        "A square has 4 sides.",
+        "It has the same amount of corners as a rectangular."
+      ] 
+    },
+    {
+      "question": "In which country can you visit the Great Wall?",
+      "options": ["China", "Japan", "India", "Thailand"],
+      "answer": 1,
+      "hints": [
+        "It was built to protect against invasions.",
+        "The wall is close to Beijing."
+      ]
+    },
+    {
+      "question": "How many hours are in one day?",
+      "options": ["12", "24", "30", "48"],
+      "answer": 2,
+      "hints": [
+        "An analog clock runs from 1 to 12 hours.",
+        "Twice in a day it becomes 12 o'clock."
+      ]
+    },
+    {
+      "question": "In which month is Valentine's Day?",
+      "options": ["January", "February", "March", "April"],
+      "answer": 2,
+      "hints": [
+        "The month only has 28 or 29 days.",
+        "It's the second month of the year."
+      ]
+    },
+    {
       "question": "What color is the sky on a clear day?",
       "options": ["Blue", "Green", "Red", "Yellow"],
       "answer": 1,
@@ -17,7 +71,206 @@
         "It's the same color as the ocean.",
         "It's not green, red, or yellow."
       ]
-    }
+    },
+    {
+      "question": "Who was Cleopatra?",
+      "options": ["A Roman emperor", "A Greek goddess", "An Egyptian queen", "A Persian warrior"],
+      "answer": 3,
+      "hints": [
+        "She was romantically linked to Julius Caesar.",
+        "She ruled Egypt."
+      ]
+    },
+    {
+      "question": "How many days are there in a week?",
+      "options": ["5", "6", "7", "8"],
+      "answer": 3,
+      "hints": [
+        "It's more than six.",
+        "It starts with Monday and ends with Sunday."
+      ]
+    },
+    {
+      "question": "Which of the following is NOT a primary color?",
+      "options": ["Red", "Blue", "Yellow", "Green"],
+      "answer": 4,
+      "hints": [
+        "Primary colors cannot be created by mixing other colors.",
+        "The secondary color in this list is created by mixing blue and yellow."
+      ]
+    },
+    {
+      "question": "What does the 'www' in a website address stand for?",
+      "options": ["World Wide Web", "Web Wired World", "Wide World Web", "World Web Width"],
+      "answer": 1,
+      "hints": [
+        "It was invented by Tim Berners-Lee.",
+        "It refers to the global network of websites."
+      ]
+    },
+    {
+      "question": "What season comes after summer?",
+      "options": ["Spring", "Autumn", "Winter", "Summer"],
+      "answer": 2,
+      "hints": [
+        "It happens between summer and winter.",
+        "Leaves start falling from the treas."
+      ]
+    },
+    {
+      "question": "What animal says 'moo'?",
+      "options": ["Dog", "Cat", "Cow", "Sheep"],
+      "answer": 3,
+      "hints": [
+        "This animal is considered holy in Hinduism.",
+        "It produces milk."
+      ]
+    },
+    {
+      "question": "Where did the Olympic Games originate?",
+      "options": ["Italy", "Egypt", "Greece", "Germany"],
+      "answer": 3,
+      "hints": [
+        "They were originally part of a religious festival.",
+        "They began in ancient Olympia."
+      ]
+    },
+    {
+      "question": "Which continent is the Sahara Desert located on?",
+      "options": ["Asia", "Africa", "Europe", "South America"],
+      "answer": 2,
+      "hints": [
+        "It is the largest hot desert in the world.",
+        "It covers countries like Algeria and Maroc."
+      ]
+    },
+    {
+      "question": "From which dance style is the pirouette a famous move?",
+      "options": ["Hip-hop", "Ballet", "Salsa", "Tap dance"],
+      "answer": 2,
+      "hints": [
+        "This style often uses pointe shoes.",
+        "It is known for graceful turns and elegant posture."
+      ]
+    },
+    {
+      "question": "Which animal can squirt ink?",
+      "options": ["Shark", "Octopus", "Dolphin", "Seal"],
+      "answer": 2,
+      "hints": [
+        "It is known for being very intelligent.",
+        "It has arms."
+      ]
+    },
+    {
+      "question": "How many continents are there on Earth?",
+      "options": ["5", "6", "7", "8"],
+      "answer": 3,
+      "hints": [
+      "The continents most often forgotten are Antartica and Oceania.",
+      "New York is placed in North America and Bogota in ... ."
+    ]
+  },
+  {
+    "question": "What do bees make?",
+    "options": ["Milk", "Honey", "Water", "Wax"],
+    "answer": 2,
+    "hints": [
+      "It's sweet and golden.",
+      "You can put it on bread or in tea."
+    ]
+  },
+  {
+    "question": "From which band is the song 'Bohemian Rhapsody'?",
+    "options": ["Queen", "The Beatles", "ABBA", "Coldplay"],
+    "answer": 1,
+    "hints": [
+      "The song is 6 minutes long.",
+      "The lead singer is Freddie Mercury."
+    ]
+  },
+  {
+    "question": "What shape is a stop sign?",
+    "options": ["Square", "Circle", "Octagon", "Triangle"],
+    "answer": 3,
+    "hints": [
+      "It's red.",
+      "It has eight sides."
+    ]
+  },
+  {
+    "question": "In which city is the statue of liberty located?",
+    "options": ["New York", "London", "Paris", "Berlin"],
+    "answer": 1,
+    "hints": [
+      "The color of the statue is green.",
+      "The statue was a gift to celebrate the USA's independence."
+    ]
+  },
+  {
+    "question": "What fruit is yellow and curved?",
+    "options": ["Apple", "Banana", "Pear", "Lemon"],
+    "answer": 2,
+    "hints": [
+      "Monkeys love it.",
+      "It grows on trees mainly in south america and asia."
+    ]
+  },
+  {
+    "question": "Which movie features a talking snowman named Olaf?",
+    "options": ["Frozen", "Moana", "Tangled", "Cinderella"],
+    "answer": 1,
+    "hints": [
+      "The main character is called Elsa",
+      "It includes the song 'Let It Go'."
+    ]
+  },
+  {
+    "question": "What sport is played at the tournament Wimbledon?",
+    "options": ["Football", "Tennis", "Cricket", "Rugby"],
+    "answer": 2,
+    "hints": [
+      "Grass courts are used.",
+      "Players use rackets."
+    ]
+  },
+  {
+    "question": "Which superhero can climb walls?",
+    "options": ["Batman", "Spider-Man", "Iron Man", "Superman"],
+    "answer": 2,
+    "hints": [
+      "He lives in New York City.",
+      "He got his powers from a bite."
+    ]
+  },
+  {
+    "question": "Which movie features a lion named Simba?",
+    "options": ["The Jungle Book", "The Lion King", "Rio", "Madagascar"],
+    "answer": 2,
+    "hints": [
+      "A famous phrase from this movie is 'Hakuna Matata!'",
+      "The father of Simba is called Mufasa."
+    ]
+  },
+  {
+    "question": "Which company created the iPhone?",
+    "options": ["Samsung", "Apple", "Microsoft", "Nokia"],
+    "answer": 2,
+    "hints": [
+      "The founder is called Steve Jobs.",
+      "Its logo is a fruit."
+    ]
+  },
+  {
+    "question": "What is the name of the sea bordered by Italy, Greece, and Algeria?",
+    "options": ["Mediterranean Sea", "Black Sea", "Red Sea", "Adriatic Sea"],
+    "answer": 1,
+    "hints": [
+      "It is one of the warmest seas in Europe.",
+      "Many ancient civilizations like the romans lived around this sea."
+    ]
+  }
+    
   ],
   "medium": [
     {
@@ -30,12 +283,246 @@
       ]
     },
     {
+      "question": "Who wrote the diary while hiding during World War II?",
+      "options": ["Marie Curie", "Anne Frank", "Jane Austen", "Queen Elizabeth"],
+      "answer": 2,
+      "hints": [
+        "She lived in Amsterdam.",
+        "Her hiding place was called the Secret Annex."
+      ]
+    },
+    {
+      "question": "What is the official language of Brazil?",
+      "options": ["Spanish", "Portuguese", "English", "French"],
+      "answer": 2,
+      "hints": [
+        "It is also spoken in Portugal.",
+        "Brazil is the only country in South America using it."
+      ]
+    },
+    {
+      "question": "What is the name of the famous clock tower in London?",
+      "options": ["Eiffel Tower", "Big Ben", "Liberty Tower", "Royal Clock"],
+      "answer": 2,
+      "hints": [
+        "It is attached to the Houses of Parliament.",
+        "The towers is named after it's builder Benjamin."
+      ]
+    },
+    {
+      "question": "What famous boy band was Harry Styles part of?",
+      "options": ["Backstreet Boys", "One Direction", "NSYNC", "5 Seconds of Summer"],
+      "answer": 2,
+      "hints": [
+        "They were formed on X-Factor UK.",
+        "Members include Niall, Louis, Liam, and Zayn."
+      ]
+    },
+    {
+      "question": "Who is the famous archaeologist in the movie series with a hat and a whip?",
+      "options": ["James Bond", "Indiana Jones", "Jack Sparrow", "Han Solo"],
+      "answer": 2,
+      "hints": [
+        "Played by Harrison Ford.",
+        "He hates snakes."
+      ]
+    },
+    {
+      "question": "In Greek mythology, who is the god of the sea?",
+      "options": ["Zeus", "Hades", "Poseidon", "Apollo"],
+      "answer": 3,
+      "hints": [
+        "He carries a trident.",
+        "He is the brother of Zeus and Hades."
+      ]
+    },
+    {
+      "question": "Which continent has the most countries?",
+      "options": ["Asia", "Europe", "Africa", "South America"],
+      "answer": 3,
+      "hints": [
+        "It contains 54 recognized countries.",
+        "It is the second-largest continent."
+      ]
+    },
+    {
+      "question": "Which scientist formulated the three laws of motion?",
+      "options": ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "Niels Bohr"],
+      "answer": 2,
+      "hints": [
+        "He wrote 'Principia Mathematica'.",
+        "He also discovered gravity under an apple tree."
+      ]
+    },
+    {
+      "question": "What is the capital of Argentina?",
+      "options": ["Lima", "Santiago", "Buenos Aires", "Montevideo"],
+      "answer": 3,
+      "hints": [
+        "It is known for tango.",
+        "It is one of the largest cities in South America."
+      ]
+    },
+    {
+      "question": "Which scientist proposed the concept of natural selection?",
+      "options": ["Darwin", "Lamarck", "Watson", "Mendel"],
+      "answer": 1,
+      "hints": [
+        "He wrote 'On the Origin of Species'.",
+        "Part of the Galápagos islands, where isolated species evoluted, is named after this scientist."
+      ]
+    },
+    {
+      "question": "Which physicist discovered that electrons orbit the nucleus in energy levels?",
+      "options": ["Bohr", "Rutherford", "Planck", "Dirac"],
+      "answer": 1,
+      "hints": [
+      "His model improved upon Rutherford's atomic theory.",
+      "An new atom model was named after him"
+      ]
+    },
+    {
+      "question": "Which artist painted 'The Kiss'?",
+      "options": ["Klimt", "Picasso", "Matisse", "Monet"],
+      "answer": 1,
+      "hints": [
+        "He used a lot of gold leaf in his paintings.",
+        "He was a symbolist painter from Austria."
+      ]
+    },
+    {
+      "question": "Which singer is known for the song 'Hello'?",
+      "options": ["Adele", "Rihanna", "Taylor Swift", "Beyoncé"],
+      "answer": 1,
+      "hints": [
+        "She is British.",
+        "Other songs of her are Rolling in the deep and Skyfall."
+      ]
+    },
+    {
+      "question": "Which singer is known as the 'King of Pop'?",
+      "options": ["Elvis Presley", "Bruno Mars", "Michael Jackson", "Justin Bieber"],
+      "answer": 3,
+      "hints": [
+        "He performed the moonwalk.",
+        "He sang 'Thriller'."
+      ]
+    },
+    {
+      "question": "Which famous detective lives at 221B Baker Street?",
+      "options": ["Hercule Poirot", "Sherlock Holmes", "Inspector Gadget", "Columbo"],
+      "answer": 2,
+      "hints": [
+        "He is British.",
+        "His right hand is Dr. Watson."
+      ]
+    },
+    {
+      "question": "Which famous ship sank in 1912 on its maiden voyage?",
+      "options": ["Queen Mary", "Britannic", "Titanic", "Lusitania"],
+      "answer": 3,
+      "hints": [
+        "It struck an iceberg.",
+        "It was traveling from Southampton to New York."
+      ]
+    },
+    {
+      "question": "What is the smallest country in the world by area?",
+      "options": ["Monaco", "Vatican City", "Malta", "Liechtenstein"],
+      "answer": 2,
+      "hints": [
+        "It is home to the Pope.",
+        "It is located inside Rome."
+      ]
+    },
+    {
+      "question": "Which metal is used to make cans for soft drinks?",
+      "options": ["Copper", "Aluminium", "Silver", "Iron"],
+      "answer": 2,
+      "hints": [
+        "It is famous for its lightweight.",
+        "This material is also used a lot in airplanes."
+      ]
+    },
+    {
+      "question": "Which planet is closest to the Sun?",
+      "options": ["Mercury", "Venus", "Earth", "Mars"],
+      "answer": 1,
+      "hints": [
+        "It has no atmosphere.",
+        "It is the smallest planet in our solar system."
+      ]
+    },
+    {
+      "question": "What is the name of the house Harry Potter is a member of?",
+      "options": ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"],
+      "answer": 1,
+      "hints": [
+        "Its emblematic animal is the lion.",
+        "Hermione Granger and Ron Weasley were members of the same house."
+      ]
+    },
+    {
+      "question": "Who was the first President of the United States?",
+      "options": ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"],
+      "answer": 2,
+      "hints": [
+        "He appears on the one-dollar bill.",
+        "The USA's capital is named after him."
+      ]
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "options": ["G", "Go", "Au", "Ag"],
+      "answer": 3,
+      "hints": [
+        "Its symbol comes from the Latin word 'Aurum'.",
+        "The symbol for silver is Ag of element argentum."
+      ]
+    },
+    {
+      "question": "Which movie features the quote 'May the Force be with you'?",
+      "options": ["Star Trek", "Star Wars", "Avatar", "The Matrix"],
+      "answer": 2,
+      "hints": [
+        "The first film was released in 1977.",
+        "Jedi and lightsabers are characters in this movie."
+      ]
+    },
+    {
+      "question": "What is the name of the galaxy we live in?",
+      "options": ["Milky Way", "Andromeda", "Sombrero Galaxy", "Triangulum Galaxy"],
+      "answer": 1,
+      "hints": [
+        "Its name refers to a white band of light in the night sky.",
+        "A chocolate produced by the company Mars is named after our galaxy."
+      ]
+    },
+    {
+      "question": "Who plays the main character Jack Sparrow in the Pirates of the Caribbean movies?",
+      "options": ["Johnny Depp", "Leonardo DiCaprio", "Brad Pitt", "Tom Cruise"],
+      "answer": 1,
+      "hints": [
+        "He also starred in Edward Scissorhands.",
+        "In 2017 he devorced his ex-wife Amber Heard."
+      ]
+    },
+    {
       "question": "Who wrote 'Romeo and Juliet'?",
       "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
       "answer": 2,
       "hints": [
         "He is an English playwright and poet.",
         "He also wrote Hamlet and Macbeth."
+      ]
+    },
+    {
+      "question": "In which board game do you receive $200 when you pass 'START'?",
+      "options": ["Ticket to ride", "Risk", "Cluedo", "Monopoly"],
+      "answer": 4,
+      "hints": [
+        "The game uses money, houses, and hotels.",
+        "The board features famous streets of existing cities"
       ]
     },
     {
@@ -55,8 +542,540 @@
         "It is the second largest continent.",
         "The Nile River flows through this continent."
       ]
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "options": ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
+      "answer": 2,
+      "hints": [
+        "He is the same artist who created The Last Supper.",
+        "He was an Italian Renaissance artist."
+      ]
+    },
+    {
+      "question": "What fruit did the evil queen use to poison Snow White?",
+      "options": ["Pear", "Apple", "Grape", "Strawberry"],
+      "answer": 2,
+      "hints": [
+        "The Evil Queen disguised herself as an old woman to give it to her.",
+        "The colour of the fruit is red in the tale."
+      ]
+    },
+    {
+      "question": "Which ocean is the largest on Earth?",
+      "options": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+      "answer": 3,
+      "hints": [
+        "It's larger than all landmasses combined.",
+        "It borders Asia and Australia."  
+      ]
+    },
+    {
+      "question": "Who is currently the richest person on Earth?",
+      "options": ["Bill Gates", "Elon Musk", "Jeff Bezos", "Mark Zuckerberg"],
+      "answer": 2,
+      "hints": [
+        "He is the founder of SpaceX and Tesla.",
+        "Untill recently, he was the head of the Department of Government Efficiency in the USA."
+      ]
+    },
+    {
+      "question": "Which of the following is NOT a prime number?",
+      "options": ["11", "13", "15", "17"],
+      "answer": 3,
+      "hints": [
+        "A prime number has only two factors: 1 and itself.",
+        "This number can be divided by 3 and 5."
+      ]
+    },
+    {
+      "question": "What is the highest mountain in the world?",
+      "options": ["K2", "Mount Everest", "Kangchenjunga", "Mont Blanc"],
+      "answer": 2,
+      "hints": [
+        "It has a height of8,800 meters.",
+        "The mountain is located in the Himalayas."
+      ]
+    },
+    {
+      "question": "How many small visible squares does a standard Rubik's Cube have?",
+      "options": ["48", "54", "60", "72"],
+      "answer": 2,
+      "hints": [
+        "Each face has 9 squares.",
+        "There are 6 faces in total."
+      ]
+    },
+    {
+      "question": "Which animal is the largest mammal on Earth?",
+      "options": ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+      "answer": 2,
+      "hints": [
+        "It can reach a weight of around 150 to 170 tons.",
+        "It lives in the ocean."
+      ]
+    },
+    {
+      "question": "What is the largest organ of the human body?",
+      "options": ["Heart", "Liver", "Skin", "Lungs"],
+      "answer": 3,
+      "hints": [
+        "It covers your whole body.",
+        "It protects you from the outside world."
+      ]
+    },
+    {
+      "question": "What is the currency used in Poland?",
+      "options": ["Euro", "Krona", "Dollar", "Zloty"],
+      "answer": 4,
+      "hints": [
+        "Its name means 'golden' in Polish.",
+        "Poland is the only country using this currency."
+      ]
+    },
+    {
+      "question": "Which blood type is known as the universal donor?",
+      "options": ["A+", "B-", "O-", "AB-"],
+      "answer": 3,
+      "hints": [
+        "This bloodtype has no A, B, or Rh antigens.",
+        "AB+ is the universal receiver."
+      ]
+    },
+    {
+      "question": "Who spoke the famous words: 'One small step for a man, one giant leap for humanity'?",
+      "options": ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "Michael Collins"],
+      "answer": 2,
+      "hints": [
+        "He was an american astronaut.",
+        "He was the first human to set foot on the Moon."
+      ]
+    },
+    {
+      "question": "What is the largest country in the world by land area?",
+      "options": ["USA", "China", "Russia", "Canada"],
+      "answer": 3,
+      "hints": [
+        "It spans 11 time zones.",
+        "It stretches from Europe to Asia."
+      ]
+    },
+    {
+      "question": "Which ancient civilization built the Parthenon?",
+      "options": ["Romans", "Egyptians", "Greeks", "Persians"],
+      "answer": 3,
+      "hints": [
+        "It stands on the Acropolis.",
+        "It was built for the goddess Athena."
+      ]
+    },
+    {
+      "question": "Which ancient civilization built Machu Picchu?",
+      "options": ["Maya", "Aztec", "Inca", "Olmec"],
+      "answer": 3,
+      "hints": [
+        "They lived in the Andes Mountains.",
+        "Their empire was located in present-day Peru."
+      ]
+    },
+    {
+      "question": "Which artist painted 'The Starry Night'?",
+      "options": ["Vincent van Gogh", "Edvard Munch", "Claude Monet", "Salvador Dalí"],
+      "answer": 1,
+      "hints": [
+        "He was Dutch.",
+        "He cut off part of his ear."
+      ]
+    },
+    {
+      "question": "Which country is the largest producer of wine in the world?",
+      "options": ["Spain", "Italy", "France", "United States"],
+      "answer": 2,
+      "hints": [
+        "It also produces famous wines such as Chianti and Prosecco.",
+        "This country has the colours green, white and red in the flag"
+      ]
+    },
+    {
+      "question": "Which company is known for the slogan 'Just Do It'?",
+      "options": ["Adidas", "Nike", "Puma", "Reebok"],
+      "answer": 2,
+      "hints": [
+        "This brand is famous for athletic shoes and sportswear.",
+        "The brand name means victory in greek."
+      ]
+    },
+    {
+      "question": "Which brand is known for making the luxury bag called the Birkin?",
+      "options": ["Gucci", "Louis Vuitton", "Hermès", "Prada"],
+      "answer": 3,
+      "hints": [
+        "This is one of the most exclusive luxury fashion houses.",
+        "Its logo is an orange-colored carriage."
+      ]
+    },
+    {
+      "question": "Which brand is famous for the perfume 'No. 5'?",
+      "options": ["Chanel", "Dior", "Gucci", "Versace"],
+      "answer": 1,
+      "hints": [
+        "It is a French luxury fashion brand.",
+        "Its founder is known for the little black dress."
+      ]
+    },
+    {
+      "question": "Which tech company created the operating system Android?",
+      "options": ["Apple", "Samsung", "Microsoft", "Google"],
+      "answer": 4,
+      "hints": [
+        "It is part of Alphabet Inc.",
+        "This company is best known for its search engine."
+      ]
+    },
+    {
+      "question": "Which company is known for creating the car model 'Model S'?",
+      "options": ["Tesla", "BMW", "Audi", "Volvo"],
+      "answer": 1,
+      "hints": [
+        "This brand produces electric vehicles.",
+        "Its CEO is Elon Musk."
+      ]
+    },
+    {
+      "question": "In chess, what piece can only move diagonally?",
+      "options": ["Rook", "Knight", "Bishop", "Queen"],
+      "answer": 3,
+      "hints": [
+        "There are two of them per player.",
+        "The name is also a religious role"
+      ]
+    },
+    {
+      "question": "Which board game has characters like Miss Scarlet and Colonel Mustard?",
+      "options": ["Monopoly", "Risk", "Cluedo", "Scrabble"],
+      "answer": 3,
+      "hints": [
+        "It's a murder mystery game.",
+        "Players try to guess the weapon, room, and suspect."
+      ]
+    },
+    {
+      "question": "Which country is famous for celebrating the Day of the Dead?",
+      "options": ["Spain", "Mexico", "Brazil", "Argentina"],
+      "answer": 2,
+      "hints": [
+        "The holiday includes colorful altars and sugar skulls.",
+        "The country is also famous for guacemole"
+      ] 
+    },
+    {
+      "question": "Which holiday honors the beginning of spring in many cultures and is celebrated with egg decorating?",
+      "options": ["Easter", "Pentecost", "All Saints' Day", "Yom Kippur"],
+      "answer": 1,
+      "hints": [
+        "It is associated with rebirth and renewal.",
+        "Its symbol is a rabbit delivering eggs."
+      ]
+    },
+    {
+      "question": "Which country invented paper?",
+      "options": ["Egypt", "Greece", "India", "China"],
+      "answer": 4,
+      "hints": [
+        "The same country invented gunpowder.",
+        "It was invented during the Han Dynasty."
+      ]
+    },
+    {
+      "question": "Which country has a maple leaf on its flag?",
+      "options": ["Denmark", "Canada", "Austria", "Finland"],
+      "answer": 2,
+      "hints": [
+        "The flag is red and white.",
+        "This country has both french and english as their official languages."
+      ]
+    },
+    {
+      "question": "Which war ended with the signing of the Treaty of Versailles?",
+      "options": ["World War I", "World War II", "Cold War", "Crimean War"],
+      "answer": 1,
+      "hints": [
+        "It was known as the 'Great War' before a second one happened.",
+        "It ended in 1918."
+      ]
+    },
+    {
+      "question": "Which country was divided into North and South in 1948?",
+      "options": ["Vietnam", "Korea", "Germany", "China"],
+      "answer": 2,
+      "hints": [
+        "The division followed World War II.",
+        "Its capital cities are Pyongyang and Seoul."
+      ]
+    },
+    {
+      "question": "Which empire was ruled by Genghis Khan?",
+      "options": ["Roman Empire", "Ottoman Empire", "Mongol Empire", "Persian Empire"],
+      "answer": 3,
+      "hints": [
+        "It expanded across Asia and into Europe.",
+        "The greatest opponents of this empire where the Song and the Ming dynasty of China"
+      ]
+    },
+    {
+      "question": "Which city was divided by a wall from 1961 to 1989?",
+      "options": ["Vienna", "Berlin", "Budapest", "Warsaw"],
+      "answer": 2,
+      "hints": [
+        "The wall fell in 1989.",
+        "It symbolized the Cold War."
+      ]
+    },
+    {
+      "question": "Which city is known as the 'Big Apple'?",
+      "options": ["Chicago", "Los Angeles", "New York City", "Boston"],
+      "answer": 3,
+      "hints": [
+        "It is the most populous U.S. city.",
+        "It is home to Times Square."
+      ]
+    },
+    {
+      "question": "What is the freezing point of water in Celsius?",
+      "options": ["-10°C", "0°C", "5°C", "10°C"],
+      "answer": 2,
+      "hints": [
+        "It is the melting point of ice.",
+        "It is the start of the liquid state for water."
+      ]
+    },
+    {
+      "question": "Which planet is famous for its rings?",
+      "options": ["Mars", "Venus", "Saturn", "Mercury"],
+      "answer": 3,
+      "hints": [
+        "The rings are made of ice and rock.",
+        "The planet is named after the Roman god of agriculture."
+      ]
+    },
+    {
+      "question": "Who is known for giving the 'I Have a Dream' speech?",
+      "options": ["Malcolm X", "Martin Luther King Jr.", "Rosa Parks", "Nelson Mandela"],
+      "answer": 2,
+      "hints": [
+        "He was assassinated in 1968.",
+        "He won the Nobel Peace Prize."
+      ]
+    },
+    {
+      "question": "Which puzzle game involves matching three or more candies?",
+      "options": ["Tetris", "Candy Crush", "Minecraft", "Snake"],
+      "answer": 2,
+      "hints": [
+        "It became popular on Facebook.",
+        "It uses striped and wrapped candies."
+      ]
+    },
+    {
+      "question": "What is the largest lake in Africa?",
+      "options": ["Lake Malawi", "Lake Tanganyika", "Lake Victoria", "Lake Chad"],
+      "answer": 3,
+      "hints": [
+        "It touches Kenya, Uganda and Tanzania.",
+        "It is the source of the Nile."
+      ]
+    },
+    {
+      "question": "Which ancient roman city was destroyed by a volcanic eruption from Mount Vesuvius?",
+      "options": ["Pompeii", "Troy", "Babylon", "Petra"],
+      "answer": 1,
+      "hints": [
+        "It happened in 79 AD.",
+        "The city was covered in ash, preserving many buildings."
+      ]
+    },
+    {
+      "question": "In which country did the Renaissance begin?",
+      "options": ["France", "Germany", "Italy", "Spain"],
+      "answer": 3,
+      "hints": [
+        "It began in Florence.",
+        "Leonardo da Vinci lived there."
+      ]
+    },
+    {
+      "question": "What is the tallest building in the world?",
+      "options": ["Shanghai Tower", "Burj Khalifa", "One World Trade Center", "Petronas Towers"],
+      "answer": 2,
+      "hints": [
+        "It is 828 meters tall.",
+        "It is located in Dubai."
+      ]
+    },
+    {
+      "question": "Which book series features 'the enemy' President Snow'?",
+      "options": ["Harry Potter", "The Hunger Games", "Divergent", "Maze Runner"],
+      "answer": 2,
+      "hints": [
+        "It follows the story of Katniss Everdeen.",
+        "The country is divided into districts."
+      ]
+    },
+    {
+      "question": "What is the SI unit of electrical resistance?",
+      "options": ["Watt", "Volt", "Ampere", "Ohm"],
+      "answer": 4,
+      "hints": [
+        "It measures how much a material opposes electric current.",
+        "Its symbol is the Greek letter omega (Ω)."
+      ]
+    },
+    {
+      "question": "What is the currency of the United Kingdom?",
+      "options": ["Euro", "Pound Sterling", "Dollar", "Franc"],
+      "answer": 2,
+      "hints": [
+        "It is one of the oldest currencies still in use.",
+        "Its symbol is £."
+      ]
+    },
+    {
+      "question": "In which country is Mount Kilimanjaro located?",
+      "options": ["Kenya", "Tanzania", "Indonesia", "Iceland"],
+      "answer": 2,
+      "hints": [
+        "It is Africa's highest peak.",
+        "The mountain is near the Kenyan border."
+      ]
+    },
+    {
+      "question": "What is the official language of Egypt?",
+      "options": ["Arabic", "English", "French", "Swahili"],
+      "answer": 1,
+      "hints": [
+        "It’s a Semitic language.",
+        "It uses the Arabic alphabet."
+      ]
+    },
+    {
+      "question": "Which author wrote 'The Hobbit'?",
+      "options": ["George R.R. Martin", "C.S. Lewis", "J.R.R. Tolkien", "Mark Twain"],
+      "answer": 3,
+      "hints": [
+        "He was a professor of Anglo-Saxon at Oxford.",
+        "He also wrote The Lord of the Rings."
+      ]
+    },
+    {
+      "question": "Which continent is known as the birthplace of humanity?",
+      "options": ["Asia", "Africa", "Europe", "South America"],
+      "answer": 2,
+      "hints": [
+        "Many early fossils of humans were found here.",
+        "The oldest remains of Homo sapiens were found in Ethiopia."
+      ]
+    },
+    {
+      "question": "What is the name of the largest rainforest in the world?",
+      "options": ["Congo Rainforest", "Daintree Forest", "Amazon Rainforest", "Taiga Forest"],
+      "answer": 3,
+      "hints": [
+        "It spans multiple South American countries.",
+        "About 60% of it lies in Brazil."
+      ]
+    },
+    {
+      "question": "Which country is famous for the Taj Mahal?",
+      "options": ["Pakistan", "Iran", "India", "Nepal"],
+      "answer": 3,
+      "hints": [
+        "This country has over 1.3 billion inhabitants.",
+        "The building is located in Agra."
+      ]
+    },
+    {
+      "question": "Which country is known as the Land of the Rising Sun?",
+      "options": ["China", "Japan", "South Korea", "Vietnam"],
+      "answer": 2,
+      "hints": [
+        "This country consists of many islands.",
+        "Its flag features a red sun."
+      ]
+    },
+    {
+      "question": "Which animal is known for changing its color to blend into its surroundings?",
+      "options": ["Frog", "Chameleon", "Snake", "Lizard"],
+      "answer": 2,
+      "hints": [
+        "It has independently moving eyes.",
+        "It is famous for camouflage abilities."
+      ]
+    },
+    {
+      "question": "What sweet treat is traditionally roasted over a campfire?",
+      "options": ["Gummy bears", "Marshmallows", "Lollipops", "Caramels"],
+      "answer": 2,
+      "hints": [
+        "It becomes golden-brown and soft when heated.",
+        "It is often used in s'mores with chocolate and crackers."
+      ]
+    },
+    {
+      "question": "Which sport uses a shuttlecock?",
+      "options": ["Tennis", "Badminton", "Squash", "Pickleball"],
+      "answer": 2,
+      "hints": [
+        "Lin Dan is considered the greatest of all time in this sports.",
+        "It’s played on a court divided by a high net."
+      ]
+    },
+    {
+      "question": "Which athlete holds the world record for the 100-meter sprint?",
+      "options": ["Yohan Blake", "Usain Bolt", "Justin Gatlin", "Tyson Gay"],
+      "answer": 2,
+      "hints": [
+        "His record is 9.58 seconds.",
+        "He is Jamaican."
+      ]
+    },
+    {
+      "question": "What is the name of the boy who never grows up?",
+      "options": ["Pinocchio", "Peter Pan", "Aladdin", "Mowgli"],
+      "answer": 2,
+      "hints": [
+        "He lives in Neverland.",
+        "He is helped by the fairy Tinker Bell."
+      ]
+    },
+    {
+      "question": "What animal is the Disney character Dumbo?",
+      "options": ["Elephant", "Mouse", "Dog", "Bear"],
+      "answer": 1,
+      "hints": [
+        "Dombo can fly.",
+        "He has extremely large ears."
+      ]
+    },
+    {
+      "question": "Which Disney princess falls into a deep sleep after pricking her finger?",
+      "options": ["Belle", "Aurora", "Rapunzel", "Tiana"],
+      "answer": 2,
+      "hints": [
+        "She is known as Sleeping Beauty.",
+        "She has the same name as the roman goddess of dawn"
+      ]
+    },
+    {
+      "question": "Which city is traditionally associated with the origin of pizza Margherita?",
+      "options": ["Rome", "Florence", "Naples", "Milan"],
+      "answer": 3,
+      "hints": [
+        "This city is known to be the home of camorra.",
+        "Its location is close to the Vesuvius."
+      ]
     }
   ],
+
   "hard": [
     {
       "question": "What is the derivative of sin(x)?",
@@ -68,6 +1087,69 @@
       ]
     },
     {
+      "question": "Which famous band released the album 'Abbey Road'?",
+      "options": ["The Rolling Stones", "Queen", "Pink Floyd", "The Beatles"],
+      "answer": 4,
+      "hints": [
+        "Their last recorded album.",
+        "The cover shows them walking across a zebra crossing."
+      ]
+    },
+    {
+      "question": "Which country was formerly known as Persia?",
+      "options": ["Turkey", "Iran", "Iraq", "Saudi Arabia"],
+      "answer": 2,
+      "hints": [
+        "The name changed officially in 1935.",
+        "Its capital city is Tehran."
+      ]
+    },
+    {
+      "question": "Which political ideology is associated with Karl Marx?",
+      "options": ["Liberalism", "Communism", "Fascism", "Monarchism"],
+      "answer": 2,
+      "hints": [
+        "It influenced the Soviet Union.",
+        "It advocates a classless society."
+      ]
+    },
+    {
+      "question": "Who directed the movie 'Jurassic Park'?",
+      "options": ["James Cameron", "Steven Spielberg", "George Lucas", "Ridley Scott"],
+      "answer": 2,
+      "hints": [
+        "He also directed E.T.",
+        "He's one of the best-known Hollywood directors."
+      ]
+    },
+    {
+      "question": "Who wrote the novel '1984'?",
+      "options": ["George Orwell", "J.R.R. Tolkien", "Aldous Huxley", "Ernest Hemingway"],
+      "answer": 1,
+      "hints": [
+        "He also wrote 'Animal Farm'.",
+        "His real name was Eric Arthur Blair."
+      ]
+    },
+    {
+      "question": "Who was the first woman to win a Nobel Prize?",
+      "options": ["Marie Curie", "Rosalind Franklin", "Ada Lovelace", "Amelia Earhart"],
+      "answer": 1,
+      "hints": [
+        "She won it twice.",
+        "Her research was on radioactivity."
+      ]
+    },
+    {
+      "question": "What country is home to the Great Barrier Reef?",
+      "options": ["Australia", "South Africa", "Brazil", "India"],
+      "answer": 1,
+      "hints": [
+        "It is surrounded by the Indian and Pacific Oceans.",
+        "It's also home to kangaroos."
+      ]
+    },
+    {
       "question": "Who developed the theory of relativity?",
       "options": ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"],
       "answer": 2,
@@ -75,6 +1157,195 @@
         "He was a German-born theoretical physicist.",
         "His famous equation is E=mc^2."
       ]
-    }
+    },
+    {
+      "question": "Which gas makes up the largest proportion of Earth's atmosphere?",
+      "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"],
+      "answer": 3,
+      "hints": [
+        "It's more than three-quarters of the air we breathe.",
+        "It's essential for plant growth but not directly used by humans for respiration."
+      ]
+    },
+    {
+      "question": "What does GPS stand for?",
+      "options": ["Global Positioning System", "Geographic Positioning System", "Global Precision Satellite", "Geolocation Processing Service"],
+      "answer": 1,
+      "hints": [
+        "It helps determine locations anywhere on Earth.",
+        "It's based on a network of satellites."
+      ]
+    },
+    {
+      "question": "How many degrees do the interior angles of a triangle add up to?",
+      "options": ["90°", "180°", "270°", "360°"],
+      "answer": 2,
+      "hints": [
+        "A full circle is 360°",
+        "Two right angles together make this value."
+      ]
+    },
+    {
+      "question": "Who was the first emperor of the Roman Empire?",
+      "options": ["Julius Caesar", "Nero", "Tiberius", "Augustus"],
+      "answer": 4,
+      "hints": [
+        "His real name was Octavian.",
+        "He was Julius Caesar's adopted son."
+      ]
+    },
+    {
+      "question": "What is the longest river in the world?",
+      "options": ["Amazon River", "Nile River", "Yangtze River", "Mississippi River"],
+      "answer": 2,
+      "hints": [
+        "It is over 6,600 km long.",
+        "It flows through Egypt."
+      ]
+    },
+    {
+      "question": "Who is the singer of the song 'Rebel Rebel'?",
+      "options": ["David Bowie", "Mick Jagger", "Iggy Pop", "Bruce Springsteen"],
+      "answer": 1,
+      "hints": [
+        "He is often depicted with a lightning bolt across his face.",
+        "He sang 'Life on Mars?' and 'Under Pressure'."
+      ]
+    },
+    {
+      "question": "Which artist painted the ceiling of the Sistine Chapel?",
+      "options": ["Michelangelo", "Raphael", "Donatello", "Leonardo da Vinci"],
+      "answer": 1,
+      "hints": [
+        "He was also a sculptor.",
+        "He created the statue of David."
+      ]
+    },
+    {
+      "question": "What is the largest island in the world?",
+      "options": ["Madagascar", "Greenland", "New Guinea", "Borneo"],
+      "answer": 2,
+      "hints": [
+        "It is part of the Kingdom of Denmark.",
+        "The average temperature is 5 degrees during summer time."
+      ]
+    },
+    {
+      "question": "Which country has the largest Muslim population in the world?",
+      "options": ["Pakistan", "India", "Indonesia", "Bangladesh"],
+      "answer": 3,
+      "hints": [
+        "About 87% of its population is Muslim.",
+        "It is an archipelago of over 17,000 islands in Southeast Asia."
+      ]
+    },
+    {
+      "question": "Which country produces the most tea?",
+      "options": ["India", "Sri Lanka", "China", "Kenya"],
+      "answer": 3,
+      "hints": [
+        "It is the most populous country in the world.",
+        "The capital of this country is called Beijing."
+      ]
+    },
+    {
+      "question": "What is the biggest city in the world by population?",
+      "options": ["Delhi", "Tokyo", "Shanghai","São Paulo"],
+      "answer": 2,
+      "hints": [
+        "The country this city is in has 124 milion habitants.",
+        "This city's most famous building is a skytree named after the city itself."
+      ]
+    },
+    {
+      "question": "Who invented the electric light bulb?",
+      "options": ["Nikola Tesla", "Alexander Graham Bell", "Thomas Edison", "Albert Einstein"],
+      "answer": 3,
+      "hints": [
+        "He held over 1,000 patents.",
+        "He founded the Edison Electric Light Company."
+      ]
+    },
+    {
+      "question": "Which famous Hollywood couple met on the set of the movie 'Mr. & Mrs. Smith'?",
+      "options": ["Brad Pitt & Angelina Jolie", "Ben Affleck & Jennifer Garner", "Tom Cruise & Katie Holmes", "Ryan Reynolds & Scarlett Johansson"],
+      "answer": 1,
+      "hints": [
+        "They have six children together'.",
+        "Their couple nickname was 'Brangelina'."
+      ]
+    },
+    {
+      "question": "Which team won the FIFA World Cup in 2018?",
+      "options": ["Germany", "Brazil", "France", "Argentina"],
+      "answer": 3,
+      "hints": [
+        "Their star players include Mbappé and Griezmann.",
+        "They defeated Croatia in the final."
+      ]
+    },
+    {
+      "question": "Who composed'The Four Seasons'?",
+      "options": ["Johann Sebastian Bach", "Antonio Vivaldi", "Wolfgang Amadeus Mozart", "Ludwig van Beethoven"],
+      "answer": 2,
+      "hints": [
+        "He was also a violinist and priest, nicknamed 'The Red Priest'.",
+        "He was an Italian Baroque composer."
+      ]
+    },
+    {
+      "question": "What ancient trade route connected China with the Mediterranean?",
+      "options": ["Amber Road", "Spice Route", "Silk Road", "Tea-Horse Road"],
+      "answer": 3,
+      "hints": [
+        "Marco Polo traveled along this route.",
+        "It is named after a luxurious textile."
+      ]
+    },
+    {
+      "question": "Which empire built the Hagia Sophia?",
+      "options": ["Roman Empire", "Byzantine Empire", "Ottoman Empire", "Persian Empire"],
+      "answer": 2,
+      "hints": [
+        "The Hagia Sophia used to be an orthodox christian cathedral but is rebuild into a mosque.",
+        "It is located in Istanbul."
+      ]
+    },
+    {
+      "question": "Which composer became deaf but still wrote famous symphonies?",
+      "options": ["Mozart", "Beethoven", "Haydn", "Schubert"],
+      "answer": 2,
+      "hints": [
+        "He was german componist.",
+        "He is the composer of the 9th Symphony."
+      ]
+    },
+    {
+      "question": "Which composer wrote the opera 'Carmen'?",
+      "options": ["Giuseppe Verdi", "Wolfgang Amadeus Mozart", "Georges Bizet", "Richard Wagner"],
+      "answer": 3,
+      "hints": [
+        "He was a French composer.",
+        "This opera is set in Spain and features a famous habanera."
+      ]
+    },
+    {
+      "question": "Which country is famous for the historic temple complex Angkor Wat?",
+      "options": ["Thailand", "Vietnam", "Cambodia", "Laos"],
+      "answer": 3,
+      "hints": [
+        "This flag features a picture of the temple itself.",
+        "The temple was originally built as a Hindu site, later used by Buddhists."
+      ]
+    },
+    {
+      "question": "What is the longest bone in the human body?",
+      "options": ["Femur", "Humerus", "Tibia", "Pelvis"],
+      "answer": 1,
+      "hints": [
+        "This bone is located in the leg.",
+        "It runs from your hip to your knee."
+      ]
+    }   
   ]
 }
