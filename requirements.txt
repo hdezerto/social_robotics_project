@@ -1,4 +1,4 @@
 # Python dependencies
 openai
-furhat-remote-api
+furhat-realtime-api
 PyQt5

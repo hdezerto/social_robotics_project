@@ -1,19 +1,45 @@
-"""
-Debugging script to send a custom utterance to the robot via Furhat API.
-"""
+from furhat_realtime_api import FurhatClient
+import logging
 
-from furhat_interface.furhat_api import FurhatAPI
+# 👇 IMPORTANT: only the IP, no port here
+ROBOT_IP = "172.26.128.1"
 
-# Set up Furhat API connection (update host/port as needed)
-FURHAT_HOST = "localhost"  # Change to robot's IP if needed
-FURHAT_PORT = 80
+# If you set an API key in the Realtime API page, put it here.
+# If you allowed access without auth, keep this as None.
+API_KEY = None  # e.g. "my-secret-key"
 
-# Initialize API
-furhat = FurhatAPI(host=FURHAT_HOST, port=FURHAT_PORT)
+furhat = FurhatClient(ROBOT_IP, API_KEY)
+furhat.set_logging_level(logging.INFO)
 
-# Custom utterance to send
-custom_text = "Hello, I am Furhat. This is a debug message."
+print("Connecting...")
+furhat.connect()
+print("Connected!")
 
-# Send utterance
-response = furhat.say(text=custom_text)
-print("Response from Furhat:", response)
+furhat.request_speak_text(
+    "Hello! I am Furhat, your host for 'Who Wants to Be a Furllionaire'. "
+    "When you are ready to start the game, say: start game.",
+    wait=True
+)
+
+# Configure listening (adjust language if needed)
+furhat.request_listen_config(languages=["en-US"])
+
+print("Listening for 'start game'...")
+heard = furhat.request_listen_start(
+    partial=False,
+    concat=True,
+    stop_no_speech=True,
+    no_speech_timeout=8.0
+)
+
+print("ASR result:", repr(heard))
+
+if heard and "start" in heard.lower():
+    reply = "Great! Let's pretend the game is starting now."
+else:
+    reply = "I didn't quite catch 'start game', but thanks for talking to me!"
+
+furhat.request_speak_text(reply, wait=True)
+
+furhat.disconnect()
+print("Disconnected.")

@@ -7,23 +7,32 @@ from furhat_interface.furhat_api import FurhatAPI
 from llm_backend.llm_api import LLMAPI
 from controller.experiment_controller import ExperimentController
 from logs.logger import Logger
+import threading
 
 
 def main():
     gui = QuizGUI()
     db = QuestionDatabase('database/questions.json')
     furhat = FurhatAPI("192.168.1.110")
-    llm = LLMAPI(api_key='YOUR_API_KEY')
+    allowed_expressions = [
+        "neutral",
+        "happy",
+        "excited",
+        "concerned",
+        "thinking",
+        "confident",
+        "encouraging",
+    ]
+    llm = LLMAPI(api_key='YOUR_API_KEY', allowed_expressions=allowed_expressions)
     logger = Logger('logs/experiment_log.csv')
-    controller = ExperimentController(gui, db, furhat, llm, logger)
+    controller = ExperimentController(gui, db, furhat, llm, logger, check_relevance=True)
 
-    # Start the GUI event loop in a way that allows experiment to run
-    import threading
-    gui_thread = threading.Thread(target=gui.start)
-    gui_thread.daemon = True
-    gui_thread.start()
+    controller_thread = threading.Thread(target=controller.run_experiment, name="experiment-controller", daemon=True)
+    controller_thread.start()
 
-    controller.run_experiment() # Runs in the main thread
+    gui.start()
+
+    controller_thread.join(timeout=2)
 
 
 if __name__ == "__main__":

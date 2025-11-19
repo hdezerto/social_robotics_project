@@ -2,8 +2,17 @@
 # Communicates with LLM to generate tips and expressions
 
 class LLMAPI:
-    def __init__(self, api_key):
+    def __init__(self, api_key, allowed_expressions=None):
         self.api_key = api_key
+        self.allowed_expressions = allowed_expressions or [
+            "neutral",
+            "happy",
+            "excited",
+            "concerned",
+            "thinking",
+            "confident",
+            "encouraging",
+        ]
         # Placeholder: Initialize LLM client here
 
     def generate_assistant_response(self, question, options, user_request=None, check_relevance=False):
@@ -16,6 +25,7 @@ class LLMAPI:
             f"You are an assistant helping a user answer a multiple-choice question. "
             f"Do NOT disclose the correct answer. "
             f"Instead, provide a helpful response and a suggested facial expression for the robot. "
+            f"You may only choose facial expressions from this list: {', '.join(self.allowed_expressions)}. "
             f"Also, evaluate if the user's request is a real question about the displayed question/options or just noise/random words. "
             f"Format your response as: RESPONSE: <response>\\nEXPRESSION: <expression>\\nRELEVANT: <True/False>. "
             f"\\nQuestion: {question}\\nOptions: {options}\\nUser request: {user_request if user_request else ''}"
@@ -23,7 +33,7 @@ class LLMAPI:
         # Placeholder: Call LLM API with the constructed prompt
         # response = self.client.generate_response(prompt)
         # Example response string:
-        # RESPONSE: Here is a helpful hint.
+        # RESPONSE: Here is a helpful response.
         # EXPRESSION: happy
         # RELEVANT: True
 
