@@ -169,107 +169,107 @@
       "hints": [
       "The continents most often forgotten are Antartica and Oceania.",
       "New York is placed in North America and Bogota in ... ."
-    ]
-  },
-  {
-    "question": "What do bees make?",
-    "options": ["Milk", "Honey", "Water", "Wax"],
-    "answer": 2,
-    "hints": [
-      "It's sweet and golden.",
-      "You can put it on bread or in tea."
-    ]
-  },
-  {
-    "question": "From which band is the song 'Bohemian Rhapsody'?",
-    "options": ["Queen", "The Beatles", "ABBA", "Coldplay"],
-    "answer": 1,
-    "hints": [
-      "The song is 6 minutes long.",
-      "The lead singer is Freddie Mercury."
-    ]
-  },
-  {
-    "question": "What shape is a stop sign?",
-    "options": ["Square", "Circle", "Octagon", "Triangle"],
-    "answer": 3,
-    "hints": [
-      "It's red.",
-      "It has eight sides."
-    ]
-  },
-  {
-    "question": "In which city is the statue of liberty located?",
-    "options": ["New York", "London", "Paris", "Berlin"],
-    "answer": 1,
-    "hints": [
-      "The color of the statue is green.",
-      "The statue was a gift to celebrate the USA's independence."
-    ]
-  },
-  {
-    "question": "What fruit is yellow and curved?",
-    "options": ["Apple", "Banana", "Pear", "Lemon"],
-    "answer": 2,
-    "hints": [
-      "Monkeys love it.",
-      "It grows on trees mainly in south america and asia."
-    ]
-  },
-  {
-    "question": "Which movie features a talking snowman named Olaf?",
-    "options": ["Frozen", "Moana", "Tangled", "Cinderella"],
-    "answer": 1,
-    "hints": [
-      "The main character is called Elsa",
-      "It includes the song 'Let It Go'."
-    ]
-  },
-  {
-    "question": "What sport is played at the tournament Wimbledon?",
-    "options": ["Football", "Tennis", "Cricket", "Rugby"],
-    "answer": 2,
-    "hints": [
-      "Grass courts are used.",
-      "Players use rackets."
-    ]
-  },
-  {
-    "question": "Which superhero can climb walls?",
-    "options": ["Batman", "Spider-Man", "Iron Man", "Superman"],
-    "answer": 2,
-    "hints": [
-      "He lives in New York City.",
-      "He got his powers from a bite."
-    ]
-  },
-  {
-    "question": "Which movie features a lion named Simba?",
-    "options": ["The Jungle Book", "The Lion King", "Rio", "Madagascar"],
-    "answer": 2,
-    "hints": [
-      "A famous phrase from this movie is 'Hakuna Matata!'",
-      "The father of Simba is called Mufasa."
-    ]
-  },
-  {
-    "question": "Which company created the iPhone?",
-    "options": ["Samsung", "Apple", "Microsoft", "Nokia"],
-    "answer": 2,
-    "hints": [
-      "The founder is called Steve Jobs.",
-      "Its logo is a fruit."
-    ]
-  },
-  {
-    "question": "What is the name of the sea bordered by Italy, Greece, and Algeria?",
-    "options": ["Mediterranean Sea", "Black Sea", "Red Sea", "Adriatic Sea"],
-    "answer": 1,
-    "hints": [
-      "It is one of the warmest seas in Europe.",
-      "Many ancient civilizations like the romans lived around this sea."
-    ]
-  }
+      ]
+    },
+    {
+      "question": "What do bees make?",
+      "options": ["Milk", "Honey", "Water", "Wax"],
+      "answer": 2,
+      "hints": [
+        "It's sweet and golden.",
+        "You can put it on bread or in tea."
+      ]
+    },
+    {
+      "question": "From which band is the song 'Bohemian Rhapsody'?",
+      "options": ["Queen", "The Beatles", "ABBA", "Coldplay"],
+      "answer": 1,
+      "hints": [
+        "The song is 6 minutes long.",
+        "The lead singer is Freddie Mercury."
+      ]
+    },
+    {
+      "question": "What shape is a stop sign?",
+      "options": ["Square", "Circle", "Octagon", "Triangle"],
+      "answer": 3,
+      "hints": [
+        "It's red.",
+        "It has eight sides."
+      ]
+    },
+    {
+      "question": "In which city is the statue of liberty located?",
+      "options": ["New York", "London", "Paris", "Berlin"],
+      "answer": 1,
+      "hints": [
+        "The color of the statue is green.",
+        "The statue was a gift to celebrate the USA's independence."
+      ]
+    },
+    {
+      "question": "What fruit is yellow and curved?",
+      "options": ["Apple", "Banana", "Pear", "Lemon"],
+      "answer": 2,
+      "hints": [
+        "Monkeys love it.",
+        "It grows on trees mainly in south america and asia."
+      ]
+    },
+    {
+      "question": "Which movie features a talking snowman named Olaf?",
+      "options": ["Frozen", "Moana", "Tangled", "Cinderella"],
+      "answer": 1,
+      "hints": [
+        "The main character is called Elsa",
+        "It includes the song 'Let It Go'."
+      ]
+    },
+    {
+      "question": "What sport is played at the tournament Wimbledon?",
+      "options": ["Football", "Tennis", "Cricket", "Rugby"],
+      "answer": 2,
+      "hints": [
+        "Grass courts are used.",
+        "Players use rackets."
+      ]
+    },
+    {
+      "question": "Which superhero can climb walls?",
+      "options": ["Batman", "Spider-Man", "Iron Man", "Superman"],
+      "answer": 2,
+      "hints": [
+        "He lives in New York City.",
+        "He got his powers from a bite."
+      ]
+    },
+    {
+      "question": "Which movie features a lion named Simba?",
+      "options": ["The Jungle Book", "The Lion King", "Rio", "Madagascar"],
+      "answer": 2,
+      "hints": [
+        "A famous phrase from this movie is 'Hakuna Matata!'",
+        "The father of Simba is called Mufasa."
+      ]
+    },
+    {
+      "question": "Which company created the iPhone?",
+      "options": ["Samsung", "Apple", "Microsoft", "Nokia"],
+      "answer": 2,
+      "hints": [
+        "The founder is called Steve Jobs.",
+        "Its logo is a fruit."
+      ]
+    },
+    {
+      "question": "What is the name of the sea bordered by Italy, Greece, and Algeria?",
+      "options": ["Mediterranean Sea", "Black Sea", "Red Sea", "Adriatic Sea"],
+      "answer": 1,
+      "hints": [
+        "It is one of the warmest seas in Europe.",
+        "Many ancient civilizations like the romans lived around this sea."
+      ]
+    }
     
   ],
   "medium": [
@@ -1559,8 +1559,8 @@
       "options": ["Ming Dynasty", "Han Dynasty", "Qin Dynasty", "Tang Dynasty"],
       "answer": 1,
       "hints": [
-        "They rebuilt the wall with bricks and stones, making it much stronger."
-        "This dynasty ruled from the 14th to the 17th century.",
+        "They rebuilt the wall with bricks and stones, making it much stronger.",
+        "This dynasty ruled from the 14th to the 17th century."
       ]
     },
     {
@@ -1625,23 +1625,6 @@
         "It happened in 1893.",
         "This island nation is located in the southwestern Pacific Ocean."
       ]
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
- 
+    }
   ]
 }
