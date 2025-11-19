@@ -87,14 +87,14 @@ class ExperimentController:
             )
 
             if self.check_relevance:
-                response, expression, relevant = llm_response
-                if relevant and response:
+                response, expression = llm_response
+                if response is not None:
                     self._deliver_robot_response(response, expression)
                 else:
                     self.logger.log_event({"event_type": "robot_noise_ignored", "details": user_speech})
             else:
                 response, expression = llm_response
-                if response:
+                if response is not None:
                     self._deliver_robot_response(response, expression)
 
 

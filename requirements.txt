@@ -1,3 +1,5 @@
 # Python dependencies
 websockets
 furhat-realtime-api
+PyQt5
+mistralai

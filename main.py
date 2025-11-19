@@ -7,23 +7,14 @@ from furhat_interface.furhat_api import FurhatAPI
 from llm_backend.llm_api import LLMAPI
 from controller.experiment_controller import ExperimentController
 from logs.logger import Logger
+import os
 import threading
-
 
 def main():
     gui = QuizGUI()
     db = QuestionDatabase('database/questions.json')
-    furhat = FurhatAPI("192.168.1.110")
-    allowed_expressions = [
-        "neutral",
-        "happy",
-        "excited",
-        "concerned",
-        "thinking",
-        "confident",
-        "encouraging",
-    ]
-    llm = LLMAPI(api_key='YOUR_API_KEY', allowed_expressions=allowed_expressions)
+    furhat = FurhatAPI("192.168.1.175")
+    llm = LLMAPI(api_key=os.getenv("MISTRAL_LLM_API_KEY"))
     logger = Logger('logs/experiment_log.csv')
     controller = ExperimentController(gui, db, furhat, llm, logger, check_relevance=True)
 
