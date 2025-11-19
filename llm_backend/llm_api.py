@@ -4,7 +4,7 @@ from mistralai import Mistral
 import ast
 
 class LLMAPI:
-    def __init__(self, api_key):
+    def __init__(self, api_key, allowed_expressions=None):
         self.api_key = api_key
         self.model = "open-mistral-7b" #"mistral-small-latest"
         self.client = Mistral(api_key=api_key)
