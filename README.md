@@ -28,7 +28,6 @@ The Furhat Game Assistant is an interactive quiz game designed to run on the Fur
 	```
 3. **Hardware requirements:**
 	- Furhat robot (for full functionality)
-	- Microphone and speakers
 
 ### Usage
 To start the game assistant (launches the Furllionaire web GUI on http://127.0.0.1:5000):
