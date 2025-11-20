@@ -35,11 +35,15 @@ class ExperimentController:
             difficulty = difficulties[i]
             question = self.db.get_random_question(difficulty)
             if not question:
-                print(f"No {difficulty} questions available.")
                 continue
             self.gui.display_question(question["question"], question["options"], question.get("answer"))
             self.logger.log_event({"event_type": "question_displayed", "details": question["question"]})
-            # have Furhat read the question and options (pauses/resumes listening inside)
+
+            # wait for Start on the very first question (uses same simple event-based mechanism as answer selection)
+            if i == 0 and hasattr(self.gui, "wait_for_start"):
+                print("Waiting for user to press Start in the browser...")
+                self.gui.wait_for_start()  # blocks until /api/start called by browser
+
             try:
                 self._announce_question(question)
             except Exception as e:
@@ -82,7 +86,7 @@ class ExperimentController:
                     if selected == correct_option:
                         # enthusiastic correct response
                         try:
-                            self.furhat.speak("Correct! Well done!", wait=True)
+                            self.furhat.speak("Correct!", wait=True)
                         except Exception as e:
                             print(f"Error speaking correct feedback: {e}")
                         try:
@@ -93,11 +97,11 @@ class ExperimentController:
                     else:
                         # wrong response
                         try:
-                            self.furhat.speak("Ohhh, it's wrong.", wait=True)
+                            self.furhat.speak("Wrong!", wait=True)
                         except Exception as e:
                             print(f"Error speaking incorrect feedback: {e}")
                         try:
-                            self.furhat.set_expression("Oh")
+                            self.furhat.set_expression("ExpressSad")
                         except Exception:
                             pass
                         self.logger.log_event({"event_type": "robot_response", "details": "Ohhh, it's wrong."})
@@ -188,12 +192,6 @@ class ExperimentController:
             return
         q_text = question.get("question") or question.get("text") or str(question)
         opts = question.get("options") or question.get("choices") or []
-        # build a short readable string
-        parts = [q_text]
-        for i, o in enumerate(opts, start=1):
-            parts.append(f"Option {i}: {o}")
-        speak_text = " ".join(parts)
-
         # pause listening (if available), speak, then resume listening
         try:
             if hasattr(self.furhat, "stop_listening"):
@@ -202,8 +200,14 @@ class ExperimentController:
             pass
 
         try:
-            # wait=True ensures speech finishes before resuming listening
-            self.furhat.speak(speak_text, wait=True)
+            # Speak question first
+            self.furhat.speak(q_text, wait=True)
+            # Then speak options using letter labels with tiny pauses between
+            for idx, option in enumerate(opts):
+                label = chr(65 + idx) if idx < 26 else f"Option {idx + 1}"
+                utterance = f"Option {label}: {option}"
+                self.furhat.speak(utterance, wait=True)
+                time.sleep(0.3)
         except Exception as e:
             print(f"Error announcing question: {e}")
 

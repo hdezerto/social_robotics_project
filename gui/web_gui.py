@@ -40,6 +40,7 @@ class WebQuizGUI:
         self._finished = False # Indicates if the experiment is finished
         self._server_thread: Optional[threading.Thread] = None # Thread running the Flask server
         self._stop_event = threading.Event() # Used to signal server shutdown
+        self._start_event = threading.Event()
 
         self._register_routes() # Register Flask routes
 
@@ -180,3 +181,13 @@ class WebQuizGUI:
                 self._answer_value = None
                 self._answer_event.set()
             return jsonify({"status": "timeout_ack"})
+
+        @self.app.route("/api/start", methods=["POST"])
+        def api_start() -> object:
+            # Called by browser when Start button pressed
+            self._start_event.set()
+            return jsonify({"started": True}), 200
+
+    def wait_for_start(self, timeout: float = None) -> bool:
+        """Block until browser Start button pressed (or optional timeout)."""
+        return self._start_event.wait(timeout)

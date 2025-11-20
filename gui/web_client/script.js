@@ -36,6 +36,12 @@ if (startSessionBtn) {
     }
     hideIntroOverlay();
     showWaitingState("Waiting for the first question...");
+    // Notify backend so the robot knows it can read the first question.
+    try {
+      fetch("/api/start", { method: "POST" }).catch(() => {});
+    } catch (_) {
+      /* network hiccup is non-fatal here */
+    }
     startPolling();
   });
 }
