@@ -18,7 +18,7 @@ class WebQuizGUI:
         port: int = 5000,
         open_browser: bool = True,
         expected_questions: Optional[int] = 8,
-        time_limit: int = 60,
+        time_limit: int = 60, # seconds per question
     ) -> None:
         if static_dir is None:
             static_dir = Path(__file__).resolve().parent / "web_client"
@@ -32,16 +32,16 @@ class WebQuizGUI:
         self.time_limit = time_limit
 
         self.app = Flask(__name__, static_folder=str(self.static_dir), static_url_path="")
-        self._question_lock = threading.Lock()
+        self._question_lock = threading.Lock() # Protects access to current question state
         self._current_question: Optional[Dict[str, object]] = None
-        self._question_counter = 0
-        self._answer_event = threading.Event()
-        self._answer_value: Optional[str] = None
-        self._finished = False
-        self._server_thread: Optional[threading.Thread] = None
-        self._stop_event = threading.Event()
+        self._question_counter = 0 # Tracks which quesstion is being shown
+        self._answer_event = threading.Event() # Used to signal when an answer is received
+        self._answer_value: Optional[str] = None # Stores the received answer
+        self._finished = False # Indicates if the experiment is finished
+        self._server_thread: Optional[threading.Thread] = None # Thread running the Flask server
+        self._stop_event = threading.Event() # Used to signal server shutdown
 
-        self._register_routes()
+        self._register_routes() # Register Flask routes
 
     # ------------------------------------------------------------------
     # Public API expected by ExperimentController
@@ -63,7 +63,7 @@ class WebQuizGUI:
             self._answer_value = None
 
     def get_user_answer(self) -> Optional[str]:
-        self._answer_event.wait()
+        self._answer_event.wait() # Blocking event wait until answer is received
         return self._answer_value
 
     def notify_experiment_finished(self) -> None:
