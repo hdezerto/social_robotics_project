@@ -30,7 +30,7 @@
     {
       "question": "How many corners does a square have",
       "options": ["2", "3", "4", "5"],
-      "answer": 2,
+      "answer": 3,
       "hints": [
         "A square has 4 sides.",
         "It has the same amount of corners as a rectangular."
@@ -169,107 +169,107 @@
       "hints": [
       "The continents most often forgotten are Antartica and Oceania.",
       "New York is placed in North America and Bogota in ... ."
-    ]
-  },
-  {
-    "question": "What do bees make?",
-    "options": ["Milk", "Honey", "Water", "Wax"],
-    "answer": 2,
-    "hints": [
-      "It's sweet and golden.",
-      "You can put it on bread or in tea."
-    ]
-  },
-  {
-    "question": "From which band is the song 'Bohemian Rhapsody'?",
-    "options": ["Queen", "The Beatles", "ABBA", "Coldplay"],
-    "answer": 1,
-    "hints": [
-      "The song is 6 minutes long.",
-      "The lead singer is Freddie Mercury."
-    ]
-  },
-  {
-    "question": "What shape is a stop sign?",
-    "options": ["Square", "Circle", "Octagon", "Triangle"],
-    "answer": 3,
-    "hints": [
-      "It's red.",
-      "It has eight sides."
-    ]
-  },
-  {
-    "question": "In which city is the statue of liberty located?",
-    "options": ["New York", "London", "Paris", "Berlin"],
-    "answer": 1,
-    "hints": [
-      "The color of the statue is green.",
-      "The statue was a gift to celebrate the USA's independence."
-    ]
-  },
-  {
-    "question": "What fruit is yellow and curved?",
-    "options": ["Apple", "Banana", "Pear", "Lemon"],
-    "answer": 2,
-    "hints": [
-      "Monkeys love it.",
-      "It grows on trees mainly in south america and asia."
-    ]
-  },
-  {
-    "question": "Which movie features a talking snowman named Olaf?",
-    "options": ["Frozen", "Moana", "Tangled", "Cinderella"],
-    "answer": 1,
-    "hints": [
-      "The main character is called Elsa",
-      "It includes the song 'Let It Go'."
-    ]
-  },
-  {
-    "question": "What sport is played at the tournament Wimbledon?",
-    "options": ["Football", "Tennis", "Cricket", "Rugby"],
-    "answer": 2,
-    "hints": [
-      "Grass courts are used.",
-      "Players use rackets."
-    ]
-  },
-  {
-    "question": "Which superhero can climb walls?",
-    "options": ["Batman", "Spider-Man", "Iron Man", "Superman"],
-    "answer": 2,
-    "hints": [
-      "He lives in New York City.",
-      "He got his powers from a bite."
-    ]
-  },
-  {
-    "question": "Which movie features a lion named Simba?",
-    "options": ["The Jungle Book", "The Lion King", "Rio", "Madagascar"],
-    "answer": 2,
-    "hints": [
-      "A famous phrase from this movie is 'Hakuna Matata!'",
-      "The father of Simba is called Mufasa."
-    ]
-  },
-  {
-    "question": "Which company created the iPhone?",
-    "options": ["Samsung", "Apple", "Microsoft", "Nokia"],
-    "answer": 2,
-    "hints": [
-      "The founder is called Steve Jobs.",
-      "Its logo is a fruit."
-    ]
-  },
-  {
-    "question": "What is the name of the sea bordered by Italy, Greece, and Algeria?",
-    "options": ["Mediterranean Sea", "Black Sea", "Red Sea", "Adriatic Sea"],
-    "answer": 1,
-    "hints": [
-      "It is one of the warmest seas in Europe.",
-      "Many ancient civilizations like the romans lived around this sea."
-    ]
-  }
+      ]
+    },
+    {
+      "question": "What do bees make?",
+      "options": ["Milk", "Honey", "Water", "Wax"],
+      "answer": 2,
+      "hints": [
+        "It's sweet and golden.",
+        "You can put it on bread or in tea."
+      ]
+    },
+    {
+      "question": "From which band is the song 'Bohemian Rhapsody'?",
+      "options": ["Queen", "The Beatles", "ABBA", "Coldplay"],
+      "answer": 1,
+      "hints": [
+        "The song is 6 minutes long.",
+        "The lead singer is Freddie Mercury."
+      ]
+    },
+    {
+      "question": "What shape is a stop sign?",
+      "options": ["Square", "Circle", "Octagon", "Triangle"],
+      "answer": 3,
+      "hints": [
+        "It's red.",
+        "It has eight sides."
+      ]
+    },
+    {
+      "question": "In which city is the statue of liberty located?",
+      "options": ["New York", "London", "Paris", "Berlin"],
+      "answer": 1,
+      "hints": [
+        "The color of the statue is green.",
+        "The statue was a gift to celebrate the USA's independence."
+      ]
+    },
+    {
+      "question": "What fruit is yellow and curved?",
+      "options": ["Apple", "Banana", "Pear", "Lemon"],
+      "answer": 2,
+      "hints": [
+        "Monkeys love it.",
+        "It grows on trees mainly in south america and asia."
+      ]
+    },
+    {
+      "question": "Which movie features a talking snowman named Olaf?",
+      "options": ["Frozen", "Moana", "Tangled", "Cinderella"],
+      "answer": 1,
+      "hints": [
+        "The main character is called Elsa",
+        "It includes the song 'Let It Go'."
+      ]
+    },
+    {
+      "question": "What sport is played at the tournament Wimbledon?",
+      "options": ["Football", "Tennis", "Cricket", "Rugby"],
+      "answer": 2,
+      "hints": [
+        "Grass courts are used.",
+        "Players use rackets."
+      ]
+    },
+    {
+      "question": "Which superhero can climb walls?",
+      "options": ["Batman", "Spider-Man", "Iron Man", "Superman"],
+      "answer": 2,
+      "hints": [
+        "He lives in New York City.",
+        "He got his powers from a bite."
+      ]
+    },
+    {
+      "question": "Which movie features a lion named Simba?",
+      "options": ["The Jungle Book", "The Lion King", "Rio", "Madagascar"],
+      "answer": 2,
+      "hints": [
+        "A famous phrase from this movie is 'Hakuna Matata!'",
+        "The father of Simba is called Mufasa."
+      ]
+    },
+    {
+      "question": "Which company created the iPhone?",
+      "options": ["Samsung", "Apple", "Microsoft", "Nokia"],
+      "answer": 2,
+      "hints": [
+        "The founder is called Steve Jobs.",
+        "Its logo is a fruit."
+      ]
+    },
+    {
+      "question": "What is the name of the sea bordered by Italy, Greece, and Algeria?",
+      "options": ["Mediterranean Sea", "Black Sea", "Red Sea", "Adriatic Sea"],
+      "answer": 1,
+      "hints": [
+        "It is one of the warmest seas in Europe.",
+        "Many ancient civilizations like the romans lived around this sea."
+      ]
+    }
     
   ],
   "medium": [
@@ -1073,10 +1073,7 @@
         "This city is known to be the home of camorra.",
         "Its location is close to the Vesuvius."
       ]
-    }
-  ],
-
-  "hard": [
+    },
     {
       "question": "What is the derivative of sin(x)?",
       "options": ["cos(x)", "-sin(x)", "-cos(x)", "sin(x)"],
@@ -1347,5 +1344,287 @@
         "It runs from your hip to your knee."
       ]
     }   
+  ],
+
+  "hard": [
+    {
+      "question": "Which philosopher wrote 'The Republic'?",
+      "options": ["Aristotle", "Plato", "Socrates", "Epicurus"],
+      "answer": 2,
+      "hints": [
+        "He was a student of Socrates..",
+        "He was the teacher of Aristotle."
+      ]
+    },
+    {
+      "question": "Which mathematician introduced the concept of a 'manifold'?",
+      "options": ["Bernhard Riemann", "Henri Poincaré", "David Hilbert", "Sofia Kovalevskaya"],
+      "answer": 1,
+      "hints": [
+        "He worked extensively on differential geometry.",
+        "He also introduced a famous hypothesis about prime numbers."
+      ]
+    },
+    {
+      "question": "What is the name of the point where the Sun crosses the celestial equator moving northward?",
+      "options": ["Winter Solstice", "Summer Solstice", "Vernal Equinox", "Autumnal Equinox"],
+      "answer": 3,
+      "hints": [
+        "This marks the start of spring in the Northern Hemisphere.",
+        "It is one of the two equinoxes, and occurs around March 20."
+      ]
+    },
+    {
+      "question": "Which language family does Hungarian belong to?",
+      "options": ["Indo-European", "Uralic", "Altaic", "Afro-Asiatic"],
+      "answer": 2,
+      "hints": [
+        "It is related to Finnish and Estonian.",
+        "This family originates near the Ural Mountains."
+      ]
+    },
+    {
+      "question": "Which ancient civilization created the first known legal code?",
+      "options": ["Babylonians", "Sumerians", "Hittites", "Phoenicians"],
+      "answer": 2,
+      "hints": [
+        "They lived in southern Mesopotamia.",
+        "They are also known for inventing cuneiform writing."
+      ]
+    },
+    {
+      "question": "What is the name for particles that mediate the fundamental forces in quantum field theory?",
+      "options": ["Tachyons", "Bosons", "Hadrons", "Neutrinos"],
+      "answer": 2,
+      "hints": [
+        "Examples include photons, gluons, and W/Z particles.",
+        "These particles obey Bose–Einstein statistics."
+      ]
+    },
+    {
+      "question": "Which river runs through the Grand Canyon?",
+      "options": ["Columbia River", "Colorado River", "Rio Grande", "Snake River"],
+      "answer": 2,
+      "hints": [
+        "It flows through the southwestern United States.",
+        "The river shares its name with the state famous for red rock landscapes."
+      ]
+    },
+    {
+      "question": "Which organelle is responsible for producing ATP in human cells?",
+      "options": ["Nucleus", "Golgi apparatus", "Mitochondrion", "Lysosome"],
+      "answer": 3,
+      "hints": [
+        "It is famously called the 'powerhouse of the cell'.",
+        "It has its own DNA."
+      ]
+    },
+    {
+      "question": "Which author wrote 'The Brothers Karamazov'?",
+      "options": ["Leo Tolstoy", "Fyodor Dostoevsky", "Anton Chekhov", "Ivan Turgenev"],
+      "answer": 2,
+      "hints": [
+        "He was one of the greatest Russian novelists.",
+        "He also wrote 'Crime and Punishment'."
+      ]
+    },
+    {
+      "question": "Which early human species is most closely related to modern Homo sapiens?",
+      "options": ["Homo habilis", "Homo erectus", "Homo neanderthalensis", "Homo floresiensis"],
+      "answer": 3,
+      "hints": [
+        "They lived in Europe and parts of western Asia.",
+        "DNA evidence shows that modern humans interbred with them."
+      ]
+    },
+    {
+      "question": "Which element has the highest electronegativity?",
+      "options": ["Oxygen", "Fluorine", "Chlorine", "Nitrogen"],
+      "answer": 2,
+      "hints": [
+        "This element strongly attracts electrons.",
+        "It sits at the top-right corner of the periodic table."
+      ]
+    },
+    {
+      "question": "Which composer wrote the opera 'The Magic Flute'?",
+      "options": ["Beethoven", "Wagner", "Mozart", "Haydn"],
+      "answer": 3,
+      "hints": [
+        "He was born in austria.",
+        "He died at the age of 35."
+      ]
+    },
+    {
+      "question": "Which Irish author wrote 'Ulysses'?",
+      "options": ["James Joyce", "Oscar Wilde", "W.B. Yeats", "Samuel Beckett"],
+      "answer": 1,
+      "hints": [
+        "His writing is known for stream-of-consciousness style.",
+        "The annual celebration of his work is called Bloomsday."
+      ]
+    },
+    {
+      "question": "Which molecule carries amino acids to the ribosome during translation?",
+      "options": ["mRNA", "tRNA", "rRNA", "snRNA"],
+      "answer": 2,
+      "hints": [
+        "This molecule has a distinctive cloverleaf structure.",
+        "It matches codons using an anticodon."
+      ]
+    },
+    {
+      "question": "Which empire was ruled by Suleiman the Magnificent?",
+      "options": ["Persian Empire", "Ottoman Empire", "Mughal Empire", "Byzantine Empire"],
+      "answer": 2,
+      "hints": [
+        "This empire spanned three continents at its peak.",
+        "Its capital was Constantinople."
+      ]
+    },
+    {
+      "question": "Which economic theory suggests that markets function best with minimal government intervention?",
+      "options": ["Keynesian Economics", "Marxist Economics", "Monetarism", "Laissez-Faire Economics"],
+      "answer": 4,
+      "hints": [
+        "It is a form of kapitalism.",
+        "Its name is French for “let do” or “let it be”."
+      ]
+    },
+    {
+      "question": "Which country has the longest coastline in the world?",
+      "options": ["Australia", "Russia", "Canada", "Indonesia"],
+      "answer": 3,
+      "hints": [
+        "It borders three oceans.",
+        "The countrys icehockey team is considered on of the best in the world."
+      ]
+    },
+    {
+      "question": "Which painter is known for the work 'The Night Watch'?",
+      "options": ["Vermeer", "Rembrandt", "Rubens", "Van Dyck"],
+      "answer": 2,
+      "hints": [
+        "He was one of the greatest Dutch Golden Age painters.",
+        "He painted a lot of selfportraits during his life."
+      ]
+    },
+    {
+      "question": "Which civilization invented the first known writing system?",
+      "options": ["Egyptians", "Sumerians", "Phoenicians", "Chinese"],
+      "answer": 2,
+      "hints": [
+        "Their script is called cuneiform.",
+        "They lived in the region of Mesopotamia, modern-day Iraq."
+      ]
+    },
+    {
+      "question": "Which scientist first proposed that the continents were once joined together in a supercontinent called Pangaea?",
+      "options": ["Alfred Wegener", "Charles Lyell", "James Hutton", "Richard Owen"],
+      "answer": 1,
+      "hints": [
+        "His theory of continental drift was not accepted until plate tectonics confirmed it.",
+        "He was a German polar researcher and meteorologist."
+      ]
+    },
+    {
+      "question": "Which ancient civilization invented the concept of zero as a number?",
+      "options": ["Greeks", "Romans", "Mayans", "Persians"],
+      "answer": 3,
+      "hints": [
+        "They used a vigesimal number system.",
+        "They lived in the region where now the country Mexico is located."
+      ]
+    },
+    {
+      "question": "Which ancient Greek mathematician is known as the Father of Geometry?",
+      "options": ["Euclid", "Pythagoras", "Archimedes", "Thales"],
+      "answer": 1,
+      "hints": [
+        "He wrote the textbook Elements.",
+        "A formula named after him is used to calculate the distance between two points."
+      ]
+    },
+    {
+      "question": "Which philosopher is famous for the quote 'I think, therefore I am'?",
+      "options": ["Immanuel Kant", "René Descartes", "John Locke", "David Hume"],
+      "answer": 2,
+      "hints": [
+        "He is considered the father of modern philosophy.",
+        "He also developed Cartesian coordinates."
+      ]
+    },
+    {
+      "question": "Which dynasty built most of the sections of the Great Wall of China that still stand today?",
+      "options": ["Ming Dynasty", "Han Dynasty", "Qin Dynasty", "Tang Dynasty"],
+      "answer": 1,
+      "hints": [
+        "They rebuilt the wall with bricks and stones, making it much stronger.",
+        "This dynasty ruled from the 14th to the 17th century."
+      ]
+    },
+    {
+      "question": "Which novelist wrote the book 'Brave New World'?",
+      "options": ["George Orwell", "Aldous Huxley", "Ray Bradbury", "Margaret Atwood"],
+      "answer": 2,
+      "hints": [
+        "His book depicts a future society driven by conditioning and pleasure.",
+        "He was an English writer and philosopher."
+      ]
+    },
+    {
+      "question": "Which physicist discovered that the universe is expanding?",
+      "options": ["Albert Einstein", "Edwin Hubble", "Carl Sagan", "Stephen Hawking"],
+      "answer": 2,
+      "hints": [
+        "He observed redshift in distant galaxies.",
+        "A space telescope is named after him."
+      ]
+    },
+    {
+      "question": "Which war is known for the battles of Verdun and the Somme?",
+      "options": ["World War I", "World War II", "Crimean War", "Franco-Prussian War"],
+      "answer": 1,
+      "hints": [
+        "It introduced trench warfare on a massive scale.",
+        "It lasted from 1914 to 1918."
+      ]
+    },
+      {
+      "question": "What is the deepest known point in Earth's oceans?",
+      "options": ["Tonga Trench", "Mariana Trench", "Java Trench", "Puerto Rico Trench"],
+      "answer": 2,
+      "hints": [
+        "It is located in the western Pacific.",
+        "Its deepest point is named the Challenger Deep."
+      ]
+    },
+    {
+      "question": "What is the rarest naturally occurring element on Earth?",
+      "options": ["Francium", "Astatine", "Promethium", "Rhenium"],
+      "answer": 2,
+      "hints": [
+        "Only about 1 gram exists naturally in Earth's crust at any given time.",
+        "It is a halogen."
+      ]
+    },
+    {
+      "question": "What is the term for a word that is spelled the same forward and backward?",
+      "options": ["Anagram", "Palindrome", "Homonym", "Alliteration"],
+      "answer": 2,
+      "hints": [
+        "Examples include 'level' and 'radar'.",
+        "The term comes from Greek meaning 'running back again'."
+      ]
+    },
+    {
+      "question": "Which country was the first to grant women the right to vote?",
+      "options": ["Finland", "New Zealand", "United Kingdom", "Canada"],
+      "answer": 2,
+      "hints": [
+        "It happened in 1893.",
+        "This island nation is located in the southwestern Pacific Ocean."
+      ]
+    }
   ]
 }

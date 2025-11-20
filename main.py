@@ -10,7 +10,6 @@ from logs.logger import Logger
 import os
 import threading
 
-
 def main():
     gui = QuizGUI()
     db = QuestionDatabase('database/questions.json')
