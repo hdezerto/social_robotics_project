@@ -1,0 +1,2 @@
+[console_scripts]
+furhat-ws = furhat_realtime_api.main:run

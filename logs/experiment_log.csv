@@ -34,3 +34,83 @@ timestamp,event_type,details
 2025-11-19T11:36:17.818283,question_displayed,What color is the sky on a clear day?
 2025-11-19T11:36:17.822216,user_answer,1
 2025-11-19T11:36:17.830462,question_displayed,Who wrote 'Romeo and Juliet'?
+2025-11-20T10:00:18.827046,mode_selected,reactive
+2025-11-20T10:00:18.827885,question_displayed,Which of the following is NOT a primary color?
+2025-11-20T10:02:14.192138,mode_selected,reactive
+2025-11-20T10:02:14.192495,question_displayed,Which of the following is NOT a primary color?
+2025-11-20T10:05:18.663462,mode_selected,reactive
+2025-11-20T10:05:18.664064,question_displayed,Which animal can squirt ink?
+2025-11-20T10:07:18.415307,mode_selected,reactive
+2025-11-20T10:07:18.415740,question_displayed,What fruit is yellow and curved?
+2025-11-20T10:41:26.837998,mode_selected,reactive
+2025-11-20T10:41:26.845859,question_displayed,Which movie features a talking snowman named Olaf?
+2025-11-20T10:42:07.049721,mode_selected,reactive
+2025-11-20T10:42:07.050019,question_displayed,Where did the Olympic Games originate?
+2025-11-20T10:43:51.427658,mode_selected,reactive
+2025-11-20T10:43:51.427842,question_displayed,Which superhero can climb walls?
+2025-11-20T10:44:18.488926,mode_selected,reactive
+2025-11-20T10:44:18.489339,question_displayed,What sport is played at the tournament Wimbledon?
+2025-11-20T10:46:05.076973,mode_selected,reactive
+2025-11-20T10:46:05.077443,question_displayed,Which company created the iPhone?
+2025-11-20T10:46:17.877385,user_answer,2
+2025-11-20T10:46:17.878245,question_displayed,Which movie features a talking snowman named Olaf?
+2025-11-20T10:46:26.595238,user_answer,1
+2025-11-20T10:46:26.596275,question_displayed,What is H2O commonly known as?
+2025-11-20T10:46:31.178541,user_answer,2
+2025-11-20T10:46:31.179653,question_displayed,Which country invented paper?
+2025-11-20T10:46:38.094974,user_answer,1
+2025-11-20T10:46:38.096149,question_displayed,"In chess, what piece can only move diagonally?"
+2025-11-20T10:46:47.411420,user_answer,3
+2025-11-20T10:46:47.412179,question_displayed,Which athlete holds the world record for the 100-meter sprint?
+2025-11-20T10:46:56.545396,user_answer,2
+2025-11-20T10:46:56.546986,question_displayed,Who composed'The Four Seasons'?
+2025-11-20T10:47:06.048526,user_answer,2
+2025-11-20T10:47:06.051905,question_displayed,What ancient trade route connected China with the Mediterranean?
+2025-11-20T10:59:38.129828,mode_selected,reactive
+2025-11-20T10:59:38.130459,question_displayed,How many eyes does a dice have?
+2025-11-20T10:59:52.478519,user_answer,1
+2025-11-20T10:59:52.479324,question_displayed,From which dance style is the pirouette a famous move?
+2025-11-20T11:04:53.697533,mode_selected,reactive
+2025-11-20T11:04:53.698245,question_displayed,What does the 'www' in a website address stand for?
+2025-11-20T11:05:16.480087,user_answer,1
+2025-11-20T11:05:18.484436,question_displayed,How many eyes does a dice have?
+2025-11-20T11:05:31.960908,user_answer,4
+2025-11-20T11:05:33.963957,question_displayed,Which artist painted 'The Kiss'?
+2025-11-20T11:05:48.395116,user_answer,3
+2025-11-20T11:05:50.398632,question_displayed,What is the name of the largest rainforest in the world?
+2025-11-20T11:05:57.693559,user_answer,3
+2025-11-20T11:05:59.699927,question_displayed,Which ocean is the largest on Earth?
+2025-11-20T11:06:08.877255,user_answer,3
+2025-11-20T11:06:10.880167,question_displayed,Which planet is known as the Red Planet?
+2025-11-20T11:06:18.145653,user_answer,4
+2025-11-20T11:06:20.149033,question_displayed,What country is home to the Great Barrier Reef?
+2025-11-20T11:06:28.013418,user_answer,1
+2025-11-20T11:06:30.014812,question_displayed,What is the longest river in the world?
+2025-11-20T11:06:34.345379,user_answer,2
+2025-11-20T11:06:36.349503,experiment_finished,done
+2025-11-20T11:06:50.662469,mode_selected,reactive
+2025-11-20T11:06:50.662816,question_displayed,How many eyes does a dice have?
+2025-11-20T11:14:05.772762,mode_selected,reactive
+2025-11-20T11:14:05.773756,question_displayed,In which month is Valentine's Day?
+2025-11-20T11:14:17.117421,user_answer,2
+2025-11-20T11:14:19.122674,question_displayed,Which game uses colored pieces that fall from the top of the screen?
+2025-11-20T11:14:26.547349,user_answer,2
+2025-11-20T11:14:28.551907,question_displayed,Who is the famous archaeologist in the movie series with a hat and a whip?
+2025-11-20T11:14:37.713912,user_answer,3
+2025-11-20T11:14:39.717391,question_displayed,Which continent is known as the birthplace of humanity?
+2025-11-20T11:14:55.780419,user_answer,3
+2025-11-20T11:14:57.783026,question_displayed,What is the name of the galaxy we live in?
+2025-11-20T11:15:58.530166,timeout,No answer in 60 seconds
+2025-11-20T11:16:00.534235,question_displayed,What is H2O commonly known as?
+2025-11-20T11:16:04.597588,user_answer,2
+2025-11-20T11:16:06.600889,question_displayed,Which gas makes up the largest proportion of Earth's atmosphere?
+2025-11-20T11:16:11.147373,user_answer,3
+2025-11-20T11:16:13.152487,question_displayed,Who composed'The Four Seasons'?
+2025-11-20T11:16:16.381361,user_answer,2
+2025-11-20T11:16:18.383959,experiment_finished,done
+2025-11-20T14:28:44.803353,mode_selected,reactive
+2025-11-20T14:28:44.804275,question_displayed,In which month is Valentine's Day?
+2025-11-20T14:28:59.440054,user_answer,2
+2025-11-20T14:29:01.445822,question_displayed,How many eyes does a dice have?
+2025-11-20T14:29:07.072249,user_answer,4
+2025-11-20T14:29:09.078503,question_displayed,How many small visible squares does a standard Rubik's Cube have?
