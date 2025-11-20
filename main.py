@@ -18,7 +18,8 @@ def main():
     # constructor may raise (websocket timeout). Fall back to a silent stub
     # so the GUI and controller can run — we don't care about speaking now.
     try:
-        furhat = FurhatAPI("192.168.1.175")
+        #furhat = FurhatAPI("192.168.1.175")
+        furhat = FurhatAPI("172.29.240.1")
     except Exception:
         class _FurhatStub:
             def speak(self, text: str, wait: bool = False) -> None:
