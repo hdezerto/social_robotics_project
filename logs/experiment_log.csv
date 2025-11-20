@@ -114,3 +114,28 @@ timestamp,event_type,details
 2025-11-20T14:29:01.445822,question_displayed,How many eyes does a dice have?
 2025-11-20T14:29:07.072249,user_answer,4
 2025-11-20T14:29:09.078503,question_displayed,How many small visible squares does a standard Rubik's Cube have?
+2025-11-20T15:05:06.648604,mode_selected,reactive
+2025-11-20T15:05:06.652991,question_displayed,Where did the Olympic Games originate?
+2025-11-20T15:05:08.387979,robot_response,This is a placeholder response.
+2025-11-20T15:05:22.162742,user_answer,2
+2025-11-20T15:05:22.316719,robot_response,This is a placeholder response.
+2025-11-20T15:05:24.165742,question_displayed,Which game uses colored pieces that fall from the top of the screen?
+2025-11-20T15:05:31.644890,robot_response,This is a placeholder response.
+2025-11-20T15:05:36.071250,robot_response,This is a placeholder response.
+2025-11-20T15:05:41.642700,robot_response,This is a placeholder response.
+2025-11-20T15:05:48.067193,robot_response,This is a placeholder response.
+2025-11-20T15:05:53.608551,robot_response,This is a placeholder response.
+2025-11-20T15:06:09.008332,robot_response,This is a placeholder response.
+2025-11-20T15:06:14.067096,robot_response,This is a placeholder response.
+2025-11-20T15:27:55.406577,mode_selected,reactive
+2025-11-20T15:27:55.567246,question_displayed,Which company created the iPhone?
+2025-11-20T15:28:13.185098,user_answer,3
+2025-11-20T15:28:15.190477,question_displayed,Who was Cleopatra?
+2025-11-20T15:28:15.191916,user_answer,3
+2025-11-20T15:28:17.193271,question_displayed,"In Greek mythology, who is the god of the sea?"
+2025-11-20T15:32:44.702629,mode_selected,reactive
+2025-11-20T15:32:44.811924,question_displayed,Which continent is the Sahara Desert located on?
+2025-11-20T15:37:54.510614,mode_selected,reactive
+2025-11-20T15:37:54.513087,question_displayed,From which band is the song 'Bohemian Rhapsody'?
+2025-11-20T15:38:04.977658,user_answer,1
+2025-11-20T15:38:06.979946,question_displayed,What fruit is yellow and curved?
