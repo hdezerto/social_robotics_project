@@ -28,7 +28,7 @@ class ExperimentController:
         num_questions = 8
         difficulties = ["easy"]*2 + ["medium"]*4 + ["hard"]*2
 
-        mode = "reactive"  # or "proactive"
+        mode = "proactive"  # or "proactive"
         self.logger.log_event({"event_type": "mode_selected", "details": mode})
 
         for i in range(num_questions):
@@ -39,6 +39,11 @@ class ExperimentController:
                 continue
             self.gui.display_question(question["question"], question["options"], question.get("answer"))
             self.logger.log_event({"event_type": "question_displayed", "details": question["question"]})
+            # have Furhat read the question and options (pauses/resumes listening inside)
+            try:
+                self._announce_question(question)
+            except Exception as e:
+                print(f"Error announcing question: {e}")
             self.last_interaction = time.time()
 
             self.answer_event = threading.Event()
@@ -64,6 +69,39 @@ class ExperimentController:
                 self.logger.log_event({"event_type": "timeout", "details": "No answer in 60 seconds"})
             else:
                 self.logger.log_event({"event_type": "user_answer", "details": user_answer_val})
+
+                # Robot feedback: announce correctness immediately
+                try:
+                    # parse selected (gui uses 1-based choice)
+                    selected = int(user_answer_val)
+                except Exception:
+                    selected = None
+
+                correct_option = question.get("answer")
+                if selected is not None and correct_option is not None:
+                    if selected == correct_option:
+                        # enthusiastic correct response
+                        try:
+                            self.furhat.speak("Correct! Well done!", wait=True)
+                        except Exception as e:
+                            print(f"Error speaking correct feedback: {e}")
+                        try:
+                            self.furhat.set_expression("BigSmile")
+                        except Exception:
+                            pass
+                        self.logger.log_event({"event_type": "robot_response", "details": "Correct! Well done!"})
+                    else:
+                        # wrong response
+                        try:
+                            self.furhat.speak("Ohhh, it's wrong.", wait=True)
+                        except Exception as e:
+                            print(f"Error speaking incorrect feedback: {e}")
+                        try:
+                            self.furhat.set_expression("Oh")
+                        except Exception:
+                            pass
+                        self.logger.log_event({"event_type": "robot_response", "details": "Ohhh, it's wrong."})
+                # end robot feedback
 
             if self.post_answer_delay:
                 time.sleep(self.post_answer_delay)
@@ -143,3 +181,35 @@ class ExperimentController:
         if expression:
             self.furhat.set_expression(expression)
         self.logger.log_event({"event_type": "robot_response", "details": response})
+
+    def _announce_question(self, question):
+        """Format and have Furhat read the question and options aloud (pauses listening while speaking)."""
+        if not question:
+            return
+        q_text = question.get("question") or question.get("text") or str(question)
+        opts = question.get("options") or question.get("choices") or []
+        # build a short readable string
+        parts = [q_text]
+        for i, o in enumerate(opts, start=1):
+            parts.append(f"Option {i}: {o}")
+        speak_text = " ".join(parts)
+
+        # pause listening (if available), speak, then resume listening
+        try:
+            if hasattr(self.furhat, "stop_listening"):
+                self.furhat.stop_listening()
+        except Exception:
+            pass
+
+        try:
+            # wait=True ensures speech finishes before resuming listening
+            self.furhat.speak(speak_text, wait=True)
+        except Exception as e:
+            print(f"Error announcing question: {e}")
+
+        try:
+            # restart ASR callback
+            if hasattr(self.furhat, "listen_speech"):
+                self.furhat.listen_speech(self.handle_transcribed_speech)
+        except Exception:
+            pass
