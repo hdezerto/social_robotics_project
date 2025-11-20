@@ -19,7 +19,7 @@ class QuizGUI:
         self.answer = None # Stores the user's selected answer
         self._answer_event = threading.Event() # Indicates if an answer has been submitted
 
-    def display_question(self, question, options):
+    def display_question(self, question, options, correct_option=None):
         def update_ui():
             self.question_label.config(text=question) # Update question text with the new question
             self.options_var.set("") # Resets the selected option to nothing

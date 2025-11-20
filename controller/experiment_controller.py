@@ -18,6 +18,7 @@ class ExperimentController:
         self.last_interaction = None
         self.inactivity_threshold = 10 # time in seconds before proactive help is offered
         self.proactive_check_interval = 1 
+        self.post_answer_delay = 2.0
         self.furhat.listen_speech(self.handle_transcribed_speech)
 
 
@@ -36,7 +37,7 @@ class ExperimentController:
             if not question:
                 print(f"No {difficulty} questions available.")
                 continue
-            self.gui.display_question(question["question"], question["options"])
+            self.gui.display_question(question["question"], question["options"], question.get("answer"))
             self.logger.log_event({"event_type": "question_displayed", "details": question["question"]})
             self.last_interaction = time.time()
 
@@ -57,13 +58,15 @@ class ExperimentController:
                 help_thread.join()
             answer_thread.join()
 
-            if not answered_in_time:
+            user_answer_val = user_answer[0]
+            if not answered_in_time or user_answer_val is None:
                 print("Time's up! No answer received.")
                 self.logger.log_event({"event_type": "timeout", "details": "No answer in 60 seconds"})
-                user_answer_val = None
             else:
-                user_answer_val = user_answer[0]
                 self.logger.log_event({"event_type": "user_answer", "details": user_answer_val})
+
+            if self.post_answer_delay:
+                time.sleep(self.post_answer_delay)
 
             print("---")
         print("Experiment finished.")

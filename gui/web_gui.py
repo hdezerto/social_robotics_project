@@ -46,7 +46,7 @@ class WebQuizGUI:
     # ------------------------------------------------------------------
     # Public API expected by ExperimentController
     # ------------------------------------------------------------------
-    def display_question(self, question_text: str, options: List[str]) -> None:
+    def display_question(self, question_text: str, options: List[str], correct_option: Optional[int] = None) -> None:
         with self._question_lock:
             self._question_counter += 1
             self._current_question = {
@@ -57,6 +57,7 @@ class WebQuizGUI:
                 "total_questions": self.expected_questions,
                 "time_limit": self.time_limit,
                 "timestamp": time.time(),
+                "correct_option": correct_option,
             }
             self._finished = False
             self._answer_event = threading.Event()
@@ -81,6 +82,12 @@ class WebQuizGUI:
         except KeyboardInterrupt:
             logging.info("Keyboard interrupt received, shutting down WebQuizGUI.")
             self._stop_event.set()
+
+    def shutdown(self) -> None:
+        """Stop the Flask server loop and wait briefly for it to exit."""
+        self._stop_event.set()
+        if self._server_thread and self._server_thread.is_alive():
+            self._server_thread.join(timeout=1.0)
 
     # ------------------------------------------------------------------
     # Internal helpers
@@ -149,4 +156,27 @@ class WebQuizGUI:
                     return jsonify({"error": "choice_out_of_range"}), 400
                 self._answer_value = str(choice_as_int)
                 self._answer_event.set()
-            return jsonify({"status": "received"})
+                correct_option = self._current_question.get("correct_option")
+                is_correct = bool(correct_option and choice_as_int == correct_option)
+            return jsonify(
+                {
+                    "status": "received",
+                    "correct": is_correct,
+                    "correct_option": correct_option,
+                }
+            )
+
+        @self.app.route("/api/timeout", methods=["POST"])
+        def api_timeout() -> object:
+            with self._question_lock:
+                if not self._current_question:
+                    return jsonify({"error": "no_active_question"}), 409
+                data = request.get_json(silent=True) or {}
+                incoming_id = data.get("question_id")
+                if incoming_id != self._current_question["id"]:
+                    return jsonify({"error": "stale_question"}), 409
+                if self._answer_event.is_set():
+                    return jsonify({"error": "already_answered"}), 409
+                self._answer_value = None
+                self._answer_event.set()
+            return jsonify({"status": "timeout_ack"})

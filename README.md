@@ -35,6 +35,11 @@ To start the game assistant (launches the Furllionaire web GUI on http://127.0.0
 ```powershell
 python main.py
 ```
+For local UI work without the robot hardware or SDK, use the mock Furhat client:
+```powershell
+python main.py --mock-furhat
+```
+Add `--no-browser` if you do not want VS Code/Safari to open automatically, or `--furhat-ip <ip>` when connecting to the real robot again.
 The legacy Tkinter GUI is still available for quick local testing:
 ```powershell
 python gui/quiz_gui.py

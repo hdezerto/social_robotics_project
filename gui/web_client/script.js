@@ -17,6 +17,9 @@ const startScreenEl = document.getElementById("start-screen");
 const contentEl = document.querySelector(".content");
 const mainCardEl = document.querySelector(".main-card");
 const endScreenEl = document.getElementById("end-screen");
+const correctSoundEl = document.getElementById("correct-sound");
+const incorrectSoundEl = document.getElementById("incorrect-sound");
+const FEEDBACK_DELAY_MS = 2000;
 
 // --- Event listeners ---
 answerButtons.forEach((btn) => {
@@ -204,13 +207,25 @@ async function submitAnswer(selectedIndex) {
       body: JSON.stringify(payload),
     });
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      console.warn("Answer rejected", error);
-      showWaitingState("Answer not accepted. Waiting for the next question...");
-    } else {
-      showWaitingState("Answer submitted! Waiting for the next question...");
+    let result = null;
+    try {
+      result = await response.json();
+    } catch (_) {
+      /* ignore JSON errors */
     }
+
+    if (!response.ok) {
+      console.warn("Answer rejected", result);
+      showWaitingState("Answer not accepted. Waiting for the next question...");
+      return;
+    }
+
+    if (!result || typeof result !== "object") {
+      showWaitingState("Answer submitted! Waiting for the next question...");
+      return;
+    }
+
+    handleAnswerFeedback(selectedIndex, result);
   } catch (err) {
     console.error("Failed to submit answer", err);
     showWaitingState("Connection issue. Waiting for the next question...");
@@ -218,8 +233,8 @@ async function submitAnswer(selectedIndex) {
 }
 
 function handleTimeout() {
-  lockAnswers();
   showWaitingState("Time's up! Waiting for the next question...");
+  reportTimeout();
 }
 
 function showWaitingState(message) {
@@ -228,6 +243,72 @@ function showWaitingState(message) {
   }
   lockAnswers();
   answerButtons.forEach((btn) => btn.classList.remove("selected", "correct", "incorrect"));
+}
+
+async function reportTimeout() {
+  if (!currentQuestion) return;
+  const payload = { question_id: currentQuestion.id };
+  try {
+    const response = await fetch("/api/timeout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      console.warn("Timeout not accepted", error);
+    }
+  } catch (err) {
+    console.error("Failed to report timeout", err);
+  }
+}
+
+function handleAnswerFeedback(selectedIndex, result) {
+  const hasCorrectField = Boolean(result && Number.isInteger(result.correct_option));
+  const correctIndex = hasCorrectField ? result.correct_option - 1 : null;
+  const isCorrect = Boolean(result && result.correct === true);
+
+  highlightAnswerButtons(selectedIndex, correctIndex, isCorrect);
+
+  if (questionTextEl) {
+    questionTextEl.textContent = isCorrect
+      ? "Correct! Preparing the next question..."
+      : "Incorrect. Waiting for the next question...";
+  }
+
+  playFeedbackSound(isCorrect);
+
+  setTimeout(() => {
+    showWaitingState("Waiting for the next question...");
+  }, FEEDBACK_DELAY_MS);
+}
+
+function highlightAnswerButtons(selectedIndex, correctIndex, isCorrect) {
+  answerButtons.forEach((btn) => btn.classList.remove("selected", "correct", "incorrect"));
+  const inBounds = (idx) => typeof idx === "number" && idx >= 0 && idx < answerButtons.length;
+
+  if (isCorrect && inBounds(selectedIndex)) {
+    answerButtons[selectedIndex].classList.add("correct");
+    return;
+  }
+
+  if (inBounds(selectedIndex)) {
+    answerButtons[selectedIndex].classList.add("incorrect");
+  }
+  if (inBounds(correctIndex)) {
+    answerButtons[correctIndex].classList.add("correct");
+  }
+}
+
+function playFeedbackSound(isCorrect) {
+  const audioEl = isCorrect ? correctSoundEl : incorrectSoundEl;
+  if (!audioEl) return;
+  try {
+    audioEl.currentTime = 0;
+    audioEl.play();
+  } catch (_) {
+    /* autoplay might be blocked; ignore */
+  }
 }
 
 function showEndScreen() {
