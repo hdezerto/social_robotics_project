@@ -67,9 +67,11 @@ class LLMAPI:
         system_prompt = f"""
             You are a Furhat robot helping a user with a quiz question: "{question}" with options "{options}". 
             
-            Give the user strategic advice only, do not reveal the answer. 
+            User question: {user_request}.
+
+            Answer the user's question, but do not reveal the quiz answer. 
             Respond in max 20 words in the following format: {format}. With:
-            - tip: advice for text-to-speech 
+            - tip: response to the question/advice for answering the quiz
             - expression: one of [BigSmile, Blink, BrowFrown, BrowRaise, CloseEyes, ExpressAnger, ExpressDisgust, ExpressFear, ExpressSad, GazeAway, Nod, Oh, OpenEyes, Roll, Shake, Smile, Surprise, Thoughtful, Wink] 
             """
         
