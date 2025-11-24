@@ -41,6 +41,8 @@ class WebQuizGUI:
         self._server_thread: Optional[threading.Thread] = None # Thread running the Flask server
         self._stop_event = threading.Event() # Used to signal server shutdown
         self._start_event = threading.Event()
+        self._intro_event = threading.Event()
+        self._welcome_ready_event = threading.Event()
 
         self._register_routes() # Register Flask routes
 
@@ -59,6 +61,7 @@ class WebQuizGUI:
                 "time_limit": self.time_limit,
                 "timestamp": time.time(),
                 "correct_option": correct_option,
+                "speech_ready": False,
             }
             self._finished = False
             self._answer_event = threading.Event()
@@ -67,6 +70,11 @@ class WebQuizGUI:
     def get_user_answer(self) -> Optional[str]:
         self._answer_event.wait() # Blocking event wait until answer is received
         return self._answer_value
+
+    def mark_question_ready(self) -> None:
+        with self._question_lock:
+            if self._current_question:
+                self._current_question["speech_ready"] = True
 
     def notify_experiment_finished(self) -> None:
         with self._question_lock:
@@ -189,6 +197,28 @@ class WebQuizGUI:
             self._start_event.set()
             return jsonify({"started": True}), 200
 
+        @self.app.route("/api/intro_complete", methods=["POST"])
+        def api_intro_complete() -> object:
+            self._intro_event.set()
+            return jsonify({"intro_complete": True}), 200
+
+        @self.app.route("/api/welcome_status", methods=["GET"])
+        def api_welcome_status() -> object:
+            return jsonify({"ready": self._welcome_ready_event.is_set()}), 200
+
     def wait_for_start(self, timeout: float = None) -> bool:
         """Block until browser Start button pressed (or optional timeout)."""
         return self._start_event.wait(timeout)
+
+    def wait_for_intro_complete(self, timeout: float = None) -> bool:
+        """Block until the browser reports that the intro video finished playing."""
+        return self._intro_event.wait(timeout)
+
+    def reset_intro_complete(self) -> None:
+        self._intro_event.clear()
+
+    def reset_welcome_ready(self) -> None:
+        self._welcome_ready_event.clear()
+
+    def mark_welcome_ready(self) -> None:
+        self._welcome_ready_event.set()

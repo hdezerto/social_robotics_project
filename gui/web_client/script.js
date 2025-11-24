@@ -5,6 +5,12 @@ let countdownHandle = null;
 let currentQuestion = null;
 let sessionStarted = false;
 let timeLeft = 0;
+let introDismissed = false;
+let introReported = false;
+let welcomeReady = false;
+let welcomePollHandle = null;
+let welcomePollingActive = false;
+let questionTimerRunning = false;
 
 // --- DOM elements ---
 const questionTextEl = document.getElementById("question-text");
@@ -12,6 +18,7 @@ const answerButtons = [...document.querySelectorAll(".answer-btn")];
 const questionCounterEl = document.getElementById("question-counter");
 const timerEl = document.getElementById("timer");
 const startSessionBtn = document.getElementById("start-session");
+const startStatusEl = document.getElementById("start-status");
 const introEl = document.getElementById("intro");
 const startScreenEl = document.getElementById("start-screen");
 const contentEl = document.querySelector(".content");
@@ -28,6 +35,7 @@ answerButtons.forEach((btn) => {
 
 if (startSessionBtn) {
   startSessionBtn.addEventListener("click", () => {
+    if (!welcomeReady) return;
     sessionStarted = true;
     if (startScreenEl) startScreenEl.style.display = "none";
     if (contentEl) {
@@ -47,6 +55,7 @@ if (startSessionBtn) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  updateStartButtonState();
   setupIntroOverlay();
 });
 
@@ -67,6 +76,17 @@ function setupIntroOverlay() {
 
   tryPlay();
 
+  if (video) {
+    video.addEventListener(
+      "ended",
+      () => {
+        hideIntroOverlay();
+        notifyIntroComplete();
+      },
+      { once: true }
+    );
+  }
+
   if (overlay) {
     overlay.addEventListener("click", async () => {
       if (video) {
@@ -80,10 +100,15 @@ function setupIntroOverlay() {
     });
   }
 
-  setTimeout(() => hideIntroOverlay(), introDuration);
+  setTimeout(() => {
+    hideIntroOverlay();
+    notifyIntroComplete();
+  }, introDuration);
 }
 
 function hideIntroOverlay() {
+  if (introDismissed) return;
+  introDismissed = true;
   try {
     const video = document.getElementById("intro-video");
     if (video) {
@@ -94,6 +119,65 @@ function hideIntroOverlay() {
     /* best effort */
   }
   if (introEl) introEl.style.display = "none";
+}
+
+function notifyIntroComplete() {
+  if (introReported) return;
+  introReported = true;
+  try {
+    fetch("/api/intro_complete", { method: "POST" }).catch(() => {});
+  } catch (_) {
+    /* network hiccup is non-fatal */
+  }
+  ensureWelcomePolling();
+}
+
+function ensureWelcomePolling() {
+  if (welcomePollingActive || welcomeReady) return;
+  welcomePollingActive = true;
+  pollWelcomeReady();
+}
+
+async function pollWelcomeReady() {
+  if (welcomeReady) {
+    welcomePollingActive = false;
+    return;
+  }
+  try {
+    const response = await fetch("/api/welcome_status", { cache: "no-cache" });
+    if (response.ok) {
+      const payload = await response.json();
+      if (payload && payload.ready) {
+        welcomeReady = true;
+        welcomePollingActive = false;
+        updateStartButtonState();
+        return;
+      }
+    }
+  } catch (_) {
+    /* no-op */
+  }
+  welcomePollHandle = setTimeout(() => {
+    welcomePollHandle = null;
+    pollWelcomeReady();
+  }, 1000);
+}
+
+function updateStartButtonState() {
+  if (!startSessionBtn) return;
+  if (welcomeReady) {
+    startSessionBtn.disabled = false;
+    startSessionBtn.textContent = "Start Quiz";
+    if (startStatusEl) {
+      startStatusEl.textContent = "Press Start when you're ready!";
+    }
+  } else {
+    startSessionBtn.disabled = true;
+    startSessionBtn.textContent = "Preparing the stage...";
+    if (startStatusEl) {
+      startStatusEl.textContent = "Please wait for the host to finish the welcome.";
+    }
+  }
 }
 
 // --- Polling + rendering ---
@@ -130,8 +214,18 @@ async function fetchLatestQuestion(forceUpdate) {
       return;
     }
 
-    if (forceUpdate || !currentQuestion || currentQuestion.id !== payload.question.id) {
-      renderQuestion(payload.question);
+    const incomingQuestion = payload.question;
+    const isNewQuestion =
+      forceUpdate || !currentQuestion || currentQuestion.id !== incomingQuestion.id;
+
+    if (isNewQuestion) {
+      renderQuestion(incomingQuestion);
+    } else if (currentQuestion) {
+      const previouslyReady = Boolean(currentQuestion.speech_ready);
+      Object.assign(currentQuestion, incomingQuestion);
+      if (!previouslyReady && currentQuestion.speech_ready) {
+        applySpeechReadyState(true);
+      }
     }
   } catch (err) {
     console.error("Unable to fetch question", err);
@@ -145,11 +239,8 @@ function renderQuestion(question) {
 
   questionTextEl.textContent = question.text;
   answerButtons.forEach((btn, idx) => {
-    const optionText = Array.isArray(question.options) && typeof question.options[idx] !== "undefined"
-      ? question.options[idx]
-      : "";
+    const optionText = getOptionText(question, idx);
     btn.textContent = `${String.fromCharCode(65 + idx)}) ${optionText}`;
-    btn.disabled = !optionText;
     btn.classList.remove("correct", "incorrect");
     btn.style.visibility = optionText ? "visible" : "hidden";
   });
@@ -166,21 +257,58 @@ function renderQuestion(question) {
     }
   }
 
-  startTimer(question.time_limit || 60);
+  resetTimer(question.time_limit || 60);
+  applySpeechReadyState(Boolean(question.speech_ready));
+}
+
+function applySpeechReadyState(isReady) {
+  const ready = Boolean(isReady);
+  if (!currentQuestion) {
+    return;
+  }
+  answerButtons.forEach((btn, idx) => {
+    const optionText = getOptionText(currentQuestion, idx);
+    const hasOption = Boolean(optionText);
+    btn.disabled = !ready || !hasOption;
+  });
+  if (ready && !questionTimerRunning) {
+    startTimer(timeLeft);
+  }
+}
+
+function getOptionText(question, idx) {
+  if (!question || !Array.isArray(question.options)) {
+    return "";
+  }
+  const value = question.options[idx];
+  if (value === null || typeof value === "undefined") {
+    return "";
+  }
+  return String(value);
 }
 
 function startTimer(seconds) {
   clearInterval(countdownHandle);
   timeLeft = seconds;
   updateTimerDisplay();
+  questionTimerRunning = true;
   countdownHandle = setInterval(() => {
     timeLeft -= 1;
     updateTimerDisplay();
     if (timeLeft <= 0) {
       clearInterval(countdownHandle);
+      questionTimerRunning = false;
       handleTimeout();
     }
   }, 1000);
+}
+
+function resetTimer(seconds) {
+  clearInterval(countdownHandle);
+  countdownHandle = null;
+  questionTimerRunning = false;
+  timeLeft = seconds;
+  updateTimerDisplay();
 }
 
 function updateTimerDisplay() {
@@ -239,6 +367,7 @@ async function submitAnswer(selectedIndex) {
 }
 
 function handleTimeout() {
+  questionTimerRunning = false;
   showWaitingState("Time's up! Waiting for the next question...");
   reportTimeout();
 }

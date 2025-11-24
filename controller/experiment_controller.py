@@ -114,10 +114,10 @@ class ProactiveHelpStateMachine:
         self._cancel_response_timer()
         if not self._is_active():
             return
-        tip = "Do you need help?"
+        tip = "Do you need a help?"
         try:
             self.controller.last_interaction = time.time()
-            self.controller.furhat.speak(tip)
+            self.controller._speak_with_listening_pause(tip)
             self.controller.furhat.set_expression("neutral")
             self.controller.logger.log_event({"event_type": "robot_tip", "details": tip})
         except Exception:
@@ -210,6 +210,7 @@ class ExperimentController:
 
 
     def run_experiment(self):
+        self._wait_for_intro_then_greet()
         print("Starting experiment...")
 
         num_questions = 8
@@ -259,6 +260,7 @@ class ExperimentController:
             if not answered_in_time or user_answer_val is None:
                 print("Time's up! No answer received.")
                 self.logger.log_event({"event_type": "timeout", "details": "No answer in 60 seconds"})
+                self._announce_time_up(question)
             else:
                 self.logger.log_event({"event_type": "user_answer", "details": user_answer_val})
 
@@ -300,6 +302,7 @@ class ExperimentController:
 
             print("---")
         print("Experiment finished.")
+        self._say_thank_you()
         self.logger.log_event({"event_type": "experiment_finished", "details": "done"})
         if hasattr(self.gui, "notify_experiment_finished"):
             try:
@@ -470,3 +473,121 @@ class ExperimentController:
                 self.furhat.listen_speech(self.handle_transcribed_speech)
         except Exception:
             pass
+        finally:
+            mark_ready = getattr(self.gui, "mark_question_ready", None)
+            if callable(mark_ready):
+                try:
+                    mark_ready()
+                except Exception:
+                    pass
+
+    def _wait_for_intro_then_greet(self):
+        reset_intro = getattr(self.gui, "reset_intro_complete", None)
+        if callable(reset_intro):
+            try:
+                reset_intro()
+            except Exception:
+                pass
+        reset_ready = getattr(self.gui, "reset_welcome_ready", None)
+        if callable(reset_ready):
+            try:
+                reset_ready()
+            except Exception:
+                pass
+        wait_intro = getattr(self.gui, "wait_for_intro_complete", None)
+        if callable(wait_intro):
+            try:
+                print("Waiting for intro video to finish before greeting contestant...")
+                if not wait_intro(timeout=20.0):
+                    print("Intro wait timed out; proceeding anyway.")
+            except Exception as exc:
+                print(f"Intro wait failed: {exc}")
+        self._speak_welcome_message()
+        mark_ready = getattr(self.gui, "mark_welcome_ready", None)
+        if callable(mark_ready):
+            try:
+                mark_ready()
+            except Exception:
+                pass
+
+    def _announce_time_up(self, question):
+        if not question:
+            return
+        options = question.get("options") or []
+        correct_option = question.get("answer")
+        correct_text = None
+        label = None
+        if isinstance(correct_option, int):
+            idx = correct_option - 1
+            if 0 <= idx < len(options):
+                correct_text = options[idx]
+            if 0 <= idx < 26:
+                label = chr(65 + idx)
+            elif idx >= 0:
+                label = f"Option {idx + 1}"
+        if correct_text:
+            if label:
+                message = f"Time is up, and the correct answer is {label}: {correct_text}."
+            else:
+                message = f"Time is up, and the correct answer is {correct_text}."
+        elif label:
+            message = f"Time is up, and the correct answer is {label}."
+        else:
+            message = "Time is up."
+        try:
+            self.furhat.speak(message, wait=True)
+        except Exception:
+            pass
+        self.logger.log_event({"event_type": "robot_response", "details": message})
+
+    def _say_thank_you(self):
+        try:
+            self.furhat.speak("Thank you for playing the game!", wait=True)
+        except Exception:
+            pass
+
+    def _speak_with_listening_pause(self, text, wait=True):
+        stop_listening = getattr(self.furhat, "stop_listening", None)
+        restart_listening = getattr(self.furhat, "listen_speech", None)
+        try:
+            if callable(stop_listening):
+                try:
+                    stop_listening()
+                except Exception:
+                    pass
+            self.furhat.speak(text, wait=wait)
+        finally:
+            if callable(restart_listening):
+                try:
+                    restart_listening(self.handle_transcribed_speech)
+                except Exception:
+                    pass
+
+    def _speak_welcome_message(self):
+        stop_listening = getattr(self.furhat, "stop_listening", None)
+        restart_listening = getattr(self.furhat, "listen_speech", None)
+        try:
+            if callable(stop_listening):
+                try:
+                    stop_listening()
+                except Exception:
+                    pass
+            self.furhat.speak(
+                "Welcome to Who Wants to Be a Furllionaire! I'm your host, and I'm thrilled to have you here today! ",
+                # "Get ready for a fun and engaging experience as we test your knowledge and curiosity! "
+                # "Before we begin, here are a few instructions. "
+                # "You’ll be presented with a series of questions—read each one carefully. "
+                # "Type your answer and submit it when you’re ready. "
+                # "Don’t worry if you’re unsure—just give it your best shot! "
+                # "If you need help, just let me know. "
+                # "Are you ready? Let’s get started with your first question!",
+                wait=True
+            )
+        except Exception:
+            pass
+        finally:
+            if callable(restart_listening):
+                try:
+                    restart_listening(self.handle_transcribed_speech)
+                except Exception:
+                    pass
