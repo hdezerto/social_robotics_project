@@ -102,6 +102,7 @@ class WebQuizGUI:
             threading.Thread(target=self._open_browser_when_ready, daemon=True).start()
 
     def _run_app(self) -> None:
+        logging.getLogger("werkzeug").setLevel(logging.WARNING)
         self.app.run(host=self.host, port=self.port, debug=False, use_reloader=False)
 
     def _open_browser_when_ready(self) -> None:

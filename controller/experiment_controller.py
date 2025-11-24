@@ -7,6 +7,176 @@ import re
 import logging
 
 
+class ProactiveHelpStateMachine:
+    """Simple three-state machine that manages proactive help prompts."""
+
+    WAIT_STATE = "wait_state"
+    OFFER_HINT = "offer_hint"
+    GIVE_HINT = "give_hint"
+
+    def __init__(self, controller, wait_timeout=8.0):
+        self.controller = controller
+        self.wait_timeout = wait_timeout
+        self._state_lock = threading.Lock()
+        self._current_state = self.WAIT_STATE
+        self._stop_event = threading.Event()
+        self._wait_timer = None
+        self._response_timer = None
+        self._answer_event = None
+
+    def start(self, answer_event):
+        """Initialize the machine for a new question."""
+        self._cancel_wait_timer()
+        self._stop_event.clear()
+        self._answer_event = answer_event
+        with self._state_lock:
+            self._current_state = self.WAIT_STATE
+        self._enter_wait_state()
+
+    def stop(self):
+        self._stop_event.set()
+        self._cancel_wait_timer()
+        self._cancel_response_timer()
+        with self._state_lock:
+            self._current_state = self.WAIT_STATE
+        self._answer_event = None
+
+    def on_gaze_detected(self):
+        if not self._is_active():
+            return
+        with self._state_lock:
+            if self._current_state != self.WAIT_STATE:
+                return
+        self._cancel_wait_timer()
+        self._transition_to(self.OFFER_HINT)
+
+    def on_help_requested(self):
+        if not self._is_active():
+            return False
+        with self._state_lock:
+            if self._current_state != self.WAIT_STATE:
+                return False
+        self._cancel_wait_timer()
+        self._transition_to(self.OFFER_HINT)
+        return True
+
+    def handle_user_response(self, wants_help):
+        if not self._is_active():
+            return False
+        with self._state_lock:
+            if self._current_state != self.OFFER_HINT:
+                return False
+        self._cancel_response_timer()
+        if wants_help:
+            self.controller.logger.log_event({"event_type": "tip_response", "details": "yes"})
+            self._transition_to(self.GIVE_HINT)
+        else:
+            self.controller.logger.log_event({"event_type": "tip_response", "details": "no"})
+            self._transition_to(self.WAIT_STATE)
+        return True
+
+    def expecting_yes_no(self):
+        with self._state_lock:
+            return self._current_state == self.OFFER_HINT and self._is_active()
+
+    def current_state(self):
+        with self._state_lock:
+            return self._current_state
+
+    def _transition_to(self, new_state):
+        if not self._is_active():
+            return
+        with self._state_lock:
+            self._current_state = new_state
+        print(f"[DEBUG] StateMachine: Entering state '{new_state}'")
+        if new_state == self.WAIT_STATE:
+            self._enter_wait_state()
+        elif new_state == self.OFFER_HINT:
+            self._enter_offer_hint_state()
+        elif new_state == self.GIVE_HINT:
+            self._enter_give_hint_state()
+
+    def _enter_wait_state(self):
+        print("[DEBUG] StateMachine: In WAIT_STATE (timer armed)")
+        self._cancel_wait_timer()
+        self._cancel_response_timer()
+        if not self._is_active():
+            return
+        timer = threading.Timer(self.wait_timeout, self._wait_timeout_fired)
+        timer.daemon = True
+        with self._state_lock:
+            self._wait_timer = timer
+        timer.start()
+
+    def _enter_offer_hint_state(self):
+        print("[DEBUG] StateMachine: In OFFER_HINT (asking for help)")
+        self._cancel_wait_timer()
+        self._cancel_response_timer()
+        if not self._is_active():
+            return
+        tip = "Do you need help?"
+        try:
+            self.controller.last_interaction = time.time()
+            self.controller.furhat.speak(tip)
+            self.controller.furhat.set_expression("neutral")
+            self.controller.logger.log_event({"event_type": "robot_tip", "details": tip})
+        except Exception:
+            logging.exception("Failed to request help")
+        timer = threading.Timer(5.0, self._offer_timeout_fired)
+        timer.daemon = True
+        with self._state_lock:
+            self._response_timer = timer
+        timer.start()
+
+    def _enter_give_hint_state(self):
+        print("[DEBUG] StateMachine: In GIVE_HINT (providing hint)")
+        if not self._is_active():
+            return
+        self.controller._give_hint()
+        self._transition_to(self.WAIT_STATE)
+
+    def _wait_timeout_fired(self):
+        if not self._is_active():
+            return
+        with self._state_lock:
+            if self._current_state != self.WAIT_STATE:
+                return
+        self._transition_to(self.OFFER_HINT)
+
+    def _offer_timeout_fired(self):
+        if not self._is_active():
+            return
+        with self._state_lock:
+            if self._current_state != self.OFFER_HINT:
+                return
+        print("[DEBUG] StateMachine: OFFER_HINT timeout, returning to WAIT_STATE")
+        self.controller.logger.log_event({"event_type": "tip_response", "details": "no_response"})
+        self._transition_to(self.WAIT_STATE)
+
+    def _cancel_wait_timer(self):
+        with self._state_lock:
+            timer = self._wait_timer
+            self._wait_timer = None
+        if timer:
+            timer.cancel()
+
+    def _cancel_response_timer(self):
+        with self._state_lock:
+            timer = self._response_timer
+            self._response_timer = None
+        if timer:
+            timer.cancel()
+
+    def _is_active(self):
+        if self._stop_event.is_set():
+            return False
+        if self._answer_event is None:
+            return False
+        if self._answer_event.is_set():
+            return False
+        return True
+
+
 class ExperimentController:
     def __init__(self, gui, db, furhat, llm, logger, check_relevance=True):
         self.gui = gui
@@ -23,18 +193,9 @@ class ExperimentController:
         self.inactivity_threshold = 10 # time in seconds before proactive help is offered
         self.proactive_check_interval = 1 
         self.post_answer_delay = 2.0
-        # events used by proactive help logic
-        self._heard_help_event = threading.Event()
-        self._gaze_seen_event = threading.Event()
-        # awaiting response to proactive tip (yes/no)
-        self._awaiting_tip_response = threading.Event()
-        # events signalling tip responses
-        self._hint_given_event = threading.Event()
-        self._tip_declined_event = threading.Event()
         # per-question hint index
         self._current_hint_index = 0
-        # proactive loop configuration
-        self.cooldown_after_tip = 10.0
+        self.help_state_machine = ProactiveHelpStateMachine(self)
         # start Furhat attention/gaze monitor if supported
         try:
             if hasattr(self.furhat, "start_attention_monitor"):
@@ -76,12 +237,7 @@ class ExperimentController:
                 print(f"Error announcing question: {e}")
             self.last_interaction = time.time()
 
-            # reset per-question helper events
-            self._heard_help_event.clear()
-            self._gaze_seen_event.clear()
-            self._awaiting_tip_response.clear()
-            self._hint_given_event.clear()
-            self._tip_declined_event.clear()
+            # reset per-question helper state
             self._current_hint_index = 0
 
             self.answer_event = threading.Event()
@@ -92,13 +248,11 @@ class ExperimentController:
             answer_thread.start()
 
             if mode == "proactive":
-                help_thread = threading.Thread(target=self.proactive_help_loop, args=(self.answer_event, question))
-                help_thread.daemon = True
-                help_thread.start()
+                self.help_state_machine.start(self.answer_event)
 
             answered_in_time = self.answer_event.wait(timeout=60)
             if mode == "proactive":
-                help_thread.join()
+                self.help_state_machine.stop()
             answer_thread.join()
 
             user_answer_val = user_answer[0]
@@ -163,43 +317,24 @@ class ExperimentController:
         self.last_interaction = time.time()
         # Only process if answer window is open and question is set
         if self.answer_event and self.current_question and not self.answer_event.is_set():
-            # If we're awaiting a yes/no reply to a tip, handle that first
-            try:
-                if self._awaiting_tip_response.is_set() and isinstance(user_speech, str):
-                    # quick yes/no matching
-                    yes_match = re.search(r"\b(yes|yeah|yep|sure|please|ok|okay)\b", user_speech, re.IGNORECASE)
-                    no_match = re.search(r"\b(no|nope|not now|nah)\b", user_speech, re.IGNORECASE)
-                    if yes_match:
-                        try:
-                            self._awaiting_tip_response.clear()
-                            self._give_hint()
-                            return
-                        except Exception:
-                            pass
-                    if no_match:
-                        try:
-                            self._awaiting_tip_response.clear()
-                            try:
-                                self.furhat.speak("Okay, I'll wait.", wait=True)
-                            except Exception:
-                                pass
-                            self.logger.log_event({"event_type": "tip_response", "details": "no"})
-                            return
-                        except Exception:
-                            pass
-            except Exception:
-                pass
-            # detect quick keywords for proactive help (do not replace full LLM flow)
-            try:
-                if isinstance(user_speech, str) and re.search(r"\b(help|hint)\b", user_speech, re.IGNORECASE):
-                    # signal proactive help thread that user asked for help
-
+            state_machine = getattr(self, "help_state_machine", None)
+            # Handle proactive yes/no replies first so they do not fall through to the LLM
+            if state_machine and isinstance(user_speech, str) and state_machine.expecting_yes_no():
+                yes_match = re.search(r"\b(yes|yeah|yep|sure|please|ok|okay)\b", user_speech, re.IGNORECASE)
+                no_match = re.search(r"\b(no|nope|not now|nah)\b", user_speech, re.IGNORECASE)
+                if yes_match and state_machine.handle_user_response(True):
+                    return
+                if no_match and state_machine.handle_user_response(False):
                     try:
-                        self._heard_help_event.set()
+                        self.furhat.speak("Okay, I'll wait.", wait=True)
                     except Exception:
                         pass
-            except Exception:
-                pass
+                    return
+
+            # detect quick keywords for proactive help and transition the state machine
+            if state_machine and isinstance(user_speech, str) and re.search(r"\b(help|hint)\b", user_speech, re.IGNORECASE):
+                if state_machine.on_help_requested():
+                    return
 
             llm_response = self.llm.generate_assistant_response(
                 self.current_question["question"],
@@ -245,11 +380,6 @@ class ExperimentController:
         # only react when transitioning into 'towards' and throttle repeats (5s)
         if state == "towards" and self._last_gaze_state != "towards" and (now - self._last_gaze_spoken) > 4.0:
             try:
-                # mark that user has looked at robot (used by proactive logic)
-                try:
-                    self._gaze_seen_event.set()
-                except Exception:
-                    pass
                 # Terminal-only debug print and structured log so proactive logic can react
                 try:
                     print(f"DEBUG: gaze detected -> {state} (conf={conf})")
@@ -259,6 +389,7 @@ class ExperimentController:
                     self.logger.log_event({"event_type": "gaze_detected", "details": f"{state} (conf={conf})"})
                 except Exception:
                     pass
+                self.help_state_machine.on_gaze_detected()
             except Exception as e:
                 # avoid noisy prints; log the exception
                 try:
@@ -276,122 +407,6 @@ class ExperimentController:
         self.last_interaction = time.time()
         answer_event.set()
 
-
-    def proactive_help_loop(self, answer_event, question):
-        """
-        Proactive help flow (per user's requested logic):
-
-        - After the question is announced, wait up to 5s for the user to say 'help'/'hint' (option A).
-          - If user said help -> immediately go to Action 1 (ask "Do you need help?").
-        - If no help word within 5s (option B):
-          - If user has already looked at the robot (gaze event seen) -> immediately Action 1 (option D).
-          - Otherwise (option C): wait up to 8s for the user to look at the robot; if they don't, go to Action 1.
-
-        Action 1: ask "Do you need help?" (spoken), set neutral expression and log. Then return (do not repeatedly prompt).
-        """
-        # Run the proactive decision flow repeatedly until answered or max prompts reached
-        while not answer_event.is_set():
-            # Option A: immediate check for explicit help
-            try:
-                heard = bool(self._heard_help_event.is_set())
-            except Exception:
-                heard = False
-            try:
-                print(f"DEBUG: proactive_help_loop start - heard={heard}")
-            except Exception:
-                pass
-
-            if answer_event.is_set():
-                break
-
-            if not heard:
-                # Unconditional wait 5s for the option B behavior
-                try:
-                    time.sleep(5.0)
-                except Exception:
-                    pass
-                if answer_event.is_set():
-                    break
-
-            # If user had said help (heard==True), consume the event so it won't persist
-            if heard:
-                try:
-                    self._heard_help_event.clear()
-                except Exception:
-                    pass
-
-            # After immediate check or 5s wait, inspect gaze
-            try:
-                gazed = self._gaze_seen_event.is_set()
-            except Exception:
-                gazed = False
-            try:
-                print(f"DEBUG: proactive_help_loop immediate gaze check -> {gazed}")
-            except Exception:
-                pass
-
-            if not gazed:
-                # Poll gaze for up to 8s and react immediately if seen
-                gazed = False
-                start_t = time.time()
-                try:
-                    while (time.time() - start_t) < 8.0 and not answer_event.is_set():
-                        try:
-                            if self._gaze_seen_event.is_set():
-                                gazed = True
-                                break
-                        except Exception:
-                            pass
-                        time.sleep(0.1)
-                except Exception:
-                    gazed = False
-                try:
-                    print(f"DEBUG: proactive_help_loop finished polling gaze -> {gazed}")
-                except Exception:
-                    pass
-
-            # If gaze was used, consume it so future gaze events are fresh
-            if gazed:
-                try:
-                    self._gaze_seen_event.clear()
-                except Exception:
-                    pass
-
-            # Before speaking, check again if answer arrived
-            if answer_event.is_set():
-                break
-
-            # Action 1: ask the user if they want help
-            tip = "Do you need help?"
-            try:
-                self.last_interaction = time.time()
-                try:
-                    self._awaiting_tip_response.set()
-                except Exception:
-                    pass
-                self.furhat.speak(tip)
-                self.furhat.set_expression("neutral")
-                self.logger.log_event({"event_type": "robot_tip", "details": tip})
-            except Exception:
-                pass
-
-            # Cooldown before next prompt (allow user to respond)
-            cooldown = getattr(self, "cooldown_after_tip", 10.0)
-            start_cd = time.time()
-            while (time.time() - start_cd) < cooldown and not answer_event.is_set():
-                time.sleep(0.2)
-
-            # Clear awaiting flag after cooldown so next cycle can re-wait
-            try:
-                self._awaiting_tip_response.clear()
-            except Exception:
-                pass
-
-            # small pause before next iteration to avoid tight looping
-            try:
-                time.sleep(0.1)
-            except Exception:
-                pass
 
     def _deliver_robot_response(self, response, expression):
         self.furhat.speak(response)
