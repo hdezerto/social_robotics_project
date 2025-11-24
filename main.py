@@ -16,9 +16,10 @@ def main():
     # Try to create the Furhat client. If the robot is unreachable the
     # constructor may raise (websocket timeout). Fall back to a silent stub
     # so the GUI and controller can run — we don't care about speaking now.
+    # $Env:MISTRAL_LLM_API_KEY="cORAOPjkqUnzqHEh4eSGQw7Q2Fffq5iF"
     try:
-        #furhat = FurhatAPI("192.168.1.175")
         furhat = FurhatAPI("192.168.1.175")
+        #furhat = FurhatAPI("192.168.0.196")
     except Exception:
         class _FurhatStub:
             def speak(self, text: str, wait: bool = False) -> None:
