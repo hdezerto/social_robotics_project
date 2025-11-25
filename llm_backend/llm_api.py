@@ -12,12 +12,15 @@ class LLMAPI:
         self.client = Mistral(api_key=api_key)
 
     def llm_generate_response(self, question, options, user_request, category = None):
+
+        print("Question sent to LLM: ", user_request)
         
         response = None
         expression = None
 
         if category is None:
             category = self.interpret_text(question, options, user_request).lower()
+            print("Question categorized as: ", category)
 
         if(category == "hint"):
             response = "hint"

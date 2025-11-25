@@ -63,7 +63,7 @@ class FurhatAPI:
                 print(f"Error in listen_speech(): {e}")
             finally:
                 try:
-                    self.furhat.request_listen_stop()
+                    self.furhat._run_coroutine(self.furhat.async_client.request_listen_stop())
                 except Exception:
                     pass
 
@@ -77,7 +77,7 @@ class FurhatAPI:
     def stop_listening(self):
         self._listening.clear()
         try:
-            self.furhat.request_listen_stop()
+            self.furhat._run_coroutine(self.furhat.async_client.request_listen_stop())
         except Exception:
             pass
         if self._listen_thread:

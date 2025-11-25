@@ -14,7 +14,7 @@ class ProactiveHelpStateMachine:
     OFFER_HINT = "offer_hint"
     GIVE_HINT = "give_hint"
 
-    def __init__(self, controller, wait_timeout=8.0):
+    def __init__(self, controller, wait_timeout=18.0):
         self.controller = controller
         self.wait_timeout = wait_timeout
         self._state_lock = threading.Lock()
@@ -114,7 +114,7 @@ class ProactiveHelpStateMachine:
         self._cancel_response_timer()
         if not self._is_active():
             return
-        tip = "Do you need a help?"
+        tip = "Do you need help?"
         try:
             self.controller.last_interaction = time.time()
             self.controller._speak_with_listening_pause(tip)
@@ -420,7 +420,7 @@ class ExperimentController:
                     should_restart = True
             except Exception:
                 pass
-        self.furhat.speak(response)
+        self.furhat.speak(response, wait=True)
         if expression:
             self.furhat.set_expression(expression)
         self.logger.log_event({"event_type": "robot_response", "details": response})
