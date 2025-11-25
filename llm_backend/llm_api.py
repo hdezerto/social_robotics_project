@@ -15,18 +15,18 @@ class LLMAPI:
         expression = None
 
         if category is None:
-            category = self.interpret_text(self, question, options, user_request).lower()
+            category = self.interpret_text(question, options, user_request).lower()
 
         if(category == "hint"):
             response = self.provide_hint()
             expression = "Smile"
         if(category == "fact"):
-            response, expression = self.generate_question_response(self, question, options, user_request)
+            response, expression = self.generate_question_response(question, options, user_request)
         if(category == "answer"):
             response = "I'm sorry, I can't give you the answer to the question."
             expression = "BrowFrown"
         if(category == "greeting"):
-            response, expression = self.generate_greeting_response(self, question, options, user_request)
+            response, expression = self.generate_greeting_response(question, options, user_request)
 
         return response, expression
     
@@ -206,7 +206,7 @@ class LLMAPI:
         answers {options}. Please interpret the user_text and categorize it into one of following.
         Respond with the an explanation and the category (hint, fact, answer, irrelevant):
         - hint: The user is asking for a hint, a tip or help to answer the question.
-        - fact: The user is asking a question directly or indirectly related to any of the topics from the the quiz question or answer options. Most types of what/how/where/when questions should be in this category.
+        - fact: The user is asking a question indirectly or directly related to any of the topics in the the quiz question or answer options. Most types of what/how/where/when questions should be in this category.
         - answer: The user is asking a question which would give away the answer.
         - greeting: The user is saying hello, thank you or something similar.
         - irrelevant: Any other category.

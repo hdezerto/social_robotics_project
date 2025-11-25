@@ -79,11 +79,10 @@ class ExperimentController:
         self.last_interaction = time.time()
         # Only process if answer window is open and question is set
         if self.answer_event and self.current_question and not self.answer_event.is_set():
-            llm_response = self.llm.generate_assistant_response(
+            llm_response = self.llm.llm_generate_response(
                 self.current_question["question"],
                 self.current_question["options"],
-                user_request=user_speech,
-                check_relevance=self.check_relevance,
+                user_request=user_speech
             )
 
             if self.check_relevance:
