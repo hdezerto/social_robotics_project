@@ -412,6 +412,9 @@ class ExperimentController:
 
     def _deliver_robot_response(self, response, expression):
         self.furhat.speak(response)
+        state_machine = getattr(self, "help_state_machine", None)
+        if state_machine:
+            state_machine._cancel_wait_timer()
         if expression:
             self.furhat.set_expression(expression)
         self.logger.log_event({"event_type": "robot_response", "details": response})
