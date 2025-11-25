@@ -216,7 +216,7 @@ class ExperimentController:
         num_questions = 8
         difficulties = ["easy"]*0 + ["medium"]*4 + ["hard"]*4
 
-        mode = "proactive"  # or "reactive"
+        mode = "reactive"  # or "proactive"
         self.logger.log_event({"event_type": "mode_selected", "details": mode})
 
         for i in range(num_questions):
@@ -339,22 +339,22 @@ class ExperimentController:
                 if state_machine.on_help_requested():
                     return
 
-            llm_response = self.llm.generate_assistant_response(
+            llm_response = self.llm.llm_generate_response(
                 self.current_question["question"],
                 self.current_question["options"],
                 user_request=user_speech
             )
 
-            if self.check_relevance:
-                response, expression = llm_response
-                if response is not None:
-                    self._deliver_robot_response(response, expression)
-                else:
-                    self.logger.log_event({"event_type": "robot_noise_ignored", "details": user_speech})
+
+            response, expression = llm_response
+            if response is None or expression is None:
+                self.logger.log_event({"event_type": "robot_noise_ignored", "details": user_speech})
+            if response == "hint":
+                if hasattr(self, "help_state_machine"):
+                    self.help_state_machine.stop()
+                self._give_hint()
             else:
-                response, expression = llm_response
-                if response is not None:
-                    self._deliver_robot_response(response, expression)
+                self._deliver_robot_response(response, expression)
 
 
     def handle_gaze(self, event):
@@ -458,11 +458,11 @@ class ExperimentController:
             # Speak question first
             self.furhat.speak(q_text, wait=True)
             # Then speak options using letter labels with tiny pauses between
-            for idx, option in enumerate(opts):
-                label = chr(65 + idx) if idx < 26 else f"Option {idx + 1}"
-                utterance = f"Option {label}: {option}"
-                self.furhat.speak(utterance, wait=True)
-                time.sleep(0.3)
+            #for idx, option in enumerate(opts):
+            #    label = chr(65 + idx) if idx < 26 else f"Option {idx + 1}"
+            #    utterance = f"Option {label}: {option}"
+            #    self.furhat.speak(utterance, wait=True)
+            time.sleep(0.3)
         except Exception as e:
             print(f"Error announcing question: {e}")
 

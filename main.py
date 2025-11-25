@@ -18,7 +18,7 @@ def main():
     # so the GUI and controller can run — we don't care about speaking now.
     # $Env:MISTRAL_LLM_API_KEY="cORAOPjkqUnzqHEh4eSGQw7Q2Fffq5iF"
     try:
-        furhat = FurhatAPI("192.168.1.175")
+        furhat = FurhatAPI("192.168.1.110")
         #furhat = FurhatAPI("192.168.0.196")
     except Exception:
         class _FurhatStub:
