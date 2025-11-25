@@ -216,7 +216,7 @@ class ExperimentController:
         num_questions = 8
         difficulties = ["easy"]*0 + ["medium"]*4 + ["hard"]*4
 
-        mode = "reactive"  # or "proactive"
+        mode = "proactive"  # or "proactive"
         self.logger.log_event({"event_type": "mode_selected", "details": mode})
 
         for i in range(num_questions):
@@ -349,7 +349,7 @@ class ExperimentController:
             response, expression = llm_response
             if response is None or expression is None:
                 self.logger.log_event({"event_type": "robot_noise_ignored", "details": user_speech})
-            if response == "hint":
+            elif response == "hint":
                 if hasattr(self, "help_state_machine"):
                     self.help_state_machine.stop()
                 self._give_hint()
