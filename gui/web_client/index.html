@@ -26,7 +26,10 @@
     <div id="app">
         <!-- Start screen shown after intro ends and before quiz starts -->
         <div id="start-screen">
-            <button id="start-session" class="start-main-btn">Start Quiz</button>
+            <div class="start-panel">
+                <p id="start-status" class="start-status"></p>
+                <button id="start-session" class="start-main-btn">Start Quiz</button>
+            </div>
         </div>
 
         <div class="content" aria-hidden="true">
@@ -59,11 +62,6 @@
 
         </div>
     </div>
-
-        <!-- End screen shown after quiz finishes -->
-        <div id="end-screen" style="display:none">
-            <p class="end-message">Thank you for playing Who Wants to Be a Furllionaire?</p>
-        </div>
 
     <script src="script.js"></script>
 </body>
