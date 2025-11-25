@@ -175,6 +175,13 @@ class ProactiveHelpStateMachine:
         if self._answer_event.is_set():
             return False
         return True
+    
+    def restart_wait(self):
+        """Public hook so controller can re-arm wait timer after providing help."""
+        if not self._is_active():
+            return
+        self._cancel_response_timer()
+        self._transition_to(self.WAIT_STATE)
 
 
 class ExperimentController:
@@ -412,12 +419,15 @@ class ExperimentController:
 
     def _deliver_robot_response(self, response, expression):
         self.furhat.speak(response)
-        state_machine = getattr(self, "help_state_machine", None)
-        if state_machine:
-            state_machine._cancel_wait_timer()
         if expression:
             self.furhat.set_expression(expression)
         self.logger.log_event({"event_type": "robot_response", "details": response})
+        state_machine = getattr(self, "help_state_machine", None)
+        if state_machine and hasattr(state_machine, "restart_wait"):
+            try:
+                state_machine.restart_wait()
+            except Exception:
+                pass
 
     def _give_hint(self):
         """Deliver a hint from the current question's hints list (if available).
