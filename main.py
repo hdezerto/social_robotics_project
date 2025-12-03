@@ -1,6 +1,19 @@
 
 # best voice: Graham22k_HQ
 
+# ----------------- Hyperparameters -----------------
+
+
+
+IP_ADDRESS = "192.168.1.112" # Virtual Furhat
+# IP_ADDRESS = "192.168.1.178"
+# IP_ADDRESS = "192.168.1.110"
+
+MODE = "proactive"
+# MODE = "reactive"
+NUM_QUESTIONS = 8
+
+# ----------------- Main Code -----------------
 
 # Main entry point
 # Initializes modules and starts experiment
@@ -19,13 +32,11 @@ def main():
     db = QuestionDatabase('database/questions.json')
     # $Env:MISTRAL_LLM_API_KEY="cORAOPjkqUnzqHEh4eSGQw7Q2Fffq5iF"
     
-    #furhat = FurhatAPI("192.168.1.178")
-    #furhat = FurhatAPI("192.168.1.110")
-    furhat = FurhatAPI("192.168.1.112") # Virtual Furhat
+    furhat = FurhatAPI(IP_ADDRESS)
 
     llm = LLMAPI(api_key=os.getenv("MISTRAL_LLM_API_KEY"))
     logger = Logger('logs/experiment_log.csv')
-    controller = ExperimentController(gui, db, furhat, llm, logger, check_relevance=True)
+    controller = ExperimentController(gui, db, furhat, llm, logger, mode=MODE, num_questions=NUM_QUESTIONS, check_relevance=True)
 
     controller_thread = threading.Thread(target=controller.run_experiment, name="experiment-controller", daemon=True)
     controller_thread.start()

@@ -185,13 +185,14 @@ class ProactiveHelpStateMachine:
     
 
 class ExperimentController:
-    def __init__(self, gui, db, furhat, llm, logger, check_relevance=True):
+    def __init__(self, gui, db, furhat, llm, logger, mode, num_questions=8, check_relevance=True):
         self.gui = gui
         self.db = db
         self.furhat = furhat
         self.llm = llm
         self.logger = logger
-        self.mode = None
+        self.mode = mode
+        self.num_questions = num_questions
         self.answer_event = None
         self.current_question = None
         self.check_relevance = check_relevance
@@ -222,13 +223,10 @@ class ExperimentController:
         self._wait_for_intro_then_greet()
         print("Starting experiment...")
 
-        num_questions = 8
+        num_questions = self.num_questions
         difficulties = ["easy"]*0 + ["medium"]*4 + ["hard"]*4
 
-        mode = "proactive"  # or "proactive"
-        #mode = "reactive"  # or "proactive"
-        self.mode = mode
-        self.logger.log_event({"event_type": "mode_selected", "details": mode})
+        self.logger.log_event({"event_type": "mode_selected", "details": self.mode})
 
         if self.mode == "proactive" and self.help_state_machine is None:
             self.help_state_machine = ProactiveHelpStateMachine(self)
