@@ -5,7 +5,7 @@
 # Main entry point
 # Initializes modules and starts experiment
 
-from gui.quiz_gui import QuizGUI
+from gui.web_server import QuizWebServer
 from database.database import QuestionDatabase
 from furhat_interface.furhat_api import FurhatAPI
 from llm_backend.llm_api import LLMAPI
@@ -15,13 +15,13 @@ import os
 import threading
 
 def main():
-    gui = QuizGUI()
+    gui = QuizWebServer()
     db = QuestionDatabase('database/questions.json')
     # $Env:MISTRAL_LLM_API_KEY="cORAOPjkqUnzqHEh4eSGQw7Q2Fffq5iF"
     
     #furhat = FurhatAPI("192.168.1.178")
     #furhat = FurhatAPI("192.168.1.110")
-    furhat = FurhatAPI("192.168.1.144") # Virtual Furhat
+    furhat = FurhatAPI("192.168.1.112") # Virtual Furhat
 
     llm = LLMAPI(api_key=os.getenv("MISTRAL_LLM_API_KEY"))
     logger = Logger('logs/experiment_log.csv')

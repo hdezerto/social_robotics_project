@@ -1,3 +1,10 @@
+"""Unified quiz web server module.
+
+Provides :class:`QuizWebServer`, which combines the historical WebQuizGUI
+implementation with the previous QuizGUI adapter.
+"""
+from __future__ import annotations
+
 import logging
 import threading
 import time
@@ -8,7 +15,7 @@ from typing import Dict, List, Optional, Union
 from flask import Flask, jsonify, request, send_from_directory
 
 
-class WebQuizGUI:
+class QuizWebServer:
     """Serves the Furllionaire web UI and bridges it with the experiment controller."""
 
     def __init__(
@@ -18,7 +25,7 @@ class WebQuizGUI:
         port: int = 5000,
         open_browser: bool = True,
         expected_questions: Optional[int] = 8,
-        time_limit: int = 60, # seconds per question
+        time_limit: int = 60,
     ) -> None:
         if static_dir is None:
             static_dir = Path(__file__).resolve().parent / "web_client"
@@ -32,19 +39,19 @@ class WebQuizGUI:
         self.time_limit = time_limit
 
         self.app = Flask(__name__, static_folder=str(self.static_dir), static_url_path="")
-        self._question_lock = threading.Lock() # Protects access to current question state
+        self._question_lock = threading.Lock()
         self._current_question: Optional[Dict[str, object]] = None
-        self._question_counter = 0 # Tracks which quesstion is being shown
-        self._answer_event = threading.Event() # Used to signal when an answer is received
-        self._answer_value: Optional[str] = None # Stores the received answer
-        self._finished = False # Indicates if the experiment is finished
-        self._server_thread: Optional[threading.Thread] = None # Thread running the Flask server
-        self._stop_event = threading.Event() # Used to signal server shutdown
+        self._question_counter = 0
+        self._answer_event = threading.Event()
+        self._answer_value: Optional[str] = None
+        self._finished = False
+        self._server_thread: Optional[threading.Thread] = None
+        self._stop_event = threading.Event()
         self._start_event = threading.Event()
         self._intro_event = threading.Event()
         self._welcome_ready_event = threading.Event()
 
-        self._register_routes() # Register Flask routes
+        self._register_routes()
 
     # ------------------------------------------------------------------
     # Public API expected by ExperimentController
@@ -68,7 +75,7 @@ class WebQuizGUI:
             self._answer_value = None
 
     def get_user_answer(self) -> Optional[str]:
-        self._answer_event.wait() # Blocking event wait until answer is received
+        self._answer_event.wait()
         return self._answer_value
 
     def mark_question_ready(self) -> None:
@@ -89,7 +96,7 @@ class WebQuizGUI:
                     break
                 self._server_thread.join(timeout=0.5)
         except KeyboardInterrupt:
-            logging.info("Keyboard interrupt received, shutting down WebQuizGUI.")
+            logging.info("Keyboard interrupt received, shutting down QuizWebServer.")
             self._stop_event.set()
 
     def shutdown(self) -> None:
@@ -114,7 +121,6 @@ class WebQuizGUI:
         self.app.run(host=self.host, port=self.port, debug=False, use_reloader=False)
 
     def _open_browser_when_ready(self) -> None:
-        # Give the server a moment to start before opening the browser.
         time.sleep(1.0)
         url = f"http://{self.host}:{self.port}"
         try:
@@ -193,7 +199,6 @@ class WebQuizGUI:
 
         @self.app.route("/api/start", methods=["POST"])
         def api_start() -> object:
-            # Called by browser when Start button pressed
             self._start_event.set()
             return jsonify({"started": True}), 200
 
@@ -222,3 +227,6 @@ class WebQuizGUI:
 
     def mark_welcome_ready(self) -> None:
         self._welcome_ready_event.set()
+
+
+__all__ = ["QuizWebServer"]

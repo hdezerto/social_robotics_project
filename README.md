@@ -49,9 +49,9 @@ For local UI work without the robot hardware or SDK, use the mock Furhat client:
 python main.py --mock-furhat
 ```
 Add `--no-browser` if you do not want VS Code/Safari to open automatically, or `--furhat-ip <ip>` when connecting to the real robot again.
-The legacy Tkinter GUI is still available for quick local testing:
+You can also launch just the web server for GUI development:
 ```powershell
-python gui/quiz_gui.py
+python gui/web_server.py
 ```
 For debugging Furhat speech:
 ```powershell
