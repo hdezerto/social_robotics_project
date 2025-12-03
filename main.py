@@ -1,3 +1,7 @@
+
+# best voice: Graham22k_HQ
+
+
 # Main entry point
 # Initializes modules and starts experiment
 
@@ -13,30 +17,12 @@ import threading
 def main():
     gui = QuizGUI()
     db = QuestionDatabase('database/questions.json')
-    # Try to create the Furhat client. If the robot is unreachable the
-    # constructor may raise (websocket timeout). Fall back to a silent stub
-    # so the GUI and controller can run — we don't care about speaking now.
     # $Env:MISTRAL_LLM_API_KEY="cORAOPjkqUnzqHEh4eSGQw7Q2Fffq5iF"
-    try:
-        furhat = FurhatAPI("192.168.1.110")
-        #furhat = FurhatAPI("192.168.0.196")
-    except Exception:
-        class _FurhatStub:
-            def speak(self, text: str, wait: bool = False) -> None:
-                return None
+    
+    #furhat = FurhatAPI("192.168.1.178")
+    #furhat = FurhatAPI("192.168.1.110")
+    furhat = FurhatAPI("192.168.1.144") # Virtual Furhat
 
-            def stop_listening(self) -> None:
-                return None
-            
-            def listen_speech(self, callback):
-                # No-op: in simplified mode we don't listen to speech.
-                return None
-
-            def set_expression(self, expression: str) -> None:
-                # No-op placeholder for robot expressions.
-                return None
-
-        furhat = _FurhatStub()
     llm = LLMAPI(api_key=os.getenv("MISTRAL_LLM_API_KEY"))
     logger = Logger('logs/experiment_log.csv')
     controller = ExperimentController(gui, db, furhat, llm, logger, check_relevance=True)

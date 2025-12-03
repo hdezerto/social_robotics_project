@@ -174,6 +174,13 @@ class ProactiveHelpStateMachine:
             return False
         if self._answer_event.is_set():
             return False
+        controller_check = getattr(self.controller, "is_answering_user_question", None)
+        if callable(controller_check):
+            try:
+                if controller_check():
+                    return False
+            except Exception:
+                pass
         return True
     
 
@@ -184,18 +191,20 @@ class ExperimentController:
         self.furhat = furhat
         self.llm = llm
         self.logger = logger
+        self.mode = None
         self.answer_event = None
         self.current_question = None
         self.check_relevance = check_relevance
         self.last_interaction = None
         self._last_gaze_state = None
-        self._last_gaze_spoken = 0.0
+        self._last_gaze_spoken = time.time()
         self.inactivity_threshold = 10 # time in seconds before proactive help is offered
         self.proactive_check_interval = 1 
         self.post_answer_delay = 2.0
         # per-question hint index
         self._current_hint_index = 0
-        self.help_state_machine = ProactiveHelpStateMachine(self)
+        self.help_state_machine = None
+        self._answering_user_question = threading.Event()
         # start Furhat attention/gaze monitor if supported
         try:
             if hasattr(self.furhat, "start_attention_monitor"):
@@ -217,9 +226,15 @@ class ExperimentController:
         difficulties = ["easy"]*0 + ["medium"]*4 + ["hard"]*4
 
         mode = "proactive"  # or "proactive"
+        #mode = "reactive"  # or "proactive"
+        self.mode = mode
         self.logger.log_event({"event_type": "mode_selected", "details": mode})
 
+        if self.mode == "proactive" and self.help_state_machine is None:
+            self.help_state_machine = ProactiveHelpStateMachine(self)
+
         for i in range(num_questions):
+            print(f"\n----- Question {i+1} of {num_questions} -----")
             difficulty = difficulties[i]
             question = self.db.get_random_question(difficulty)
             if not question:
@@ -248,11 +263,11 @@ class ExperimentController:
             answer_thread = threading.Thread(target=self.get_answer, args=(user_answer, self.answer_event))
             answer_thread.start()
 
-            if mode == "proactive":
+            if self.mode == "proactive" and self.help_state_machine:
                 self.help_state_machine.start(self.answer_event)
 
             answered_in_time = self.answer_event.wait(timeout=60)
-            if mode == "proactive":
+            if self.mode == "proactive" and self.help_state_machine:
                 self.help_state_machine.stop()
             answer_thread.join()
 
@@ -300,7 +315,6 @@ class ExperimentController:
             if self.post_answer_delay:
                 time.sleep(self.post_answer_delay)
 
-            print("---")
         print("Experiment finished.")
         self._say_thank_you()
         self.logger.log_event({"event_type": "experiment_finished", "details": "done"})
@@ -350,8 +364,8 @@ class ExperimentController:
             if response is None or expression is None:
                 self.logger.log_event({"event_type": "robot_noise_ignored", "details": user_speech})
             elif response == "hint":
-                if hasattr(self, "help_state_machine"):
-                    self.help_state_machine.stop()
+                if state_machine:
+                    state_machine.stop()
                 self._give_hint()
             else:
                 self._deliver_robot_response(response, expression)
@@ -374,13 +388,14 @@ class ExperimentController:
 
         # (No verbose debug prints) — keep only structured logging and concise output on reaction
         try:
-            self.logger.log_event({"event_type": "gaze_event_raw", "details": str(event)})
+            self.loggr.log_event({"event_type": "gaze_event_raw", "details": str(event)})
         except Exception:
             pass
 
+        state_machine = getattr(self, "help_state_machine", None)
         now = time.time()
-        # only react when transitioning into 'towards' and throttle repeats (5s)
-        if state == "towards" and self._last_gaze_state != "towards" and (now - self._last_gaze_spoken) > 4.0:
+        # only react when transitioning into 'towards' and throttle repeats (8s)
+        if state == "towards" and self._last_gaze_state != "towards" and (now - self._last_gaze_spoken) > 8.0:
             try:
                 # Terminal-only debug print and structured log so proactive logic can react
                 try:
@@ -391,7 +406,8 @@ class ExperimentController:
                     self.logger.log_event({"event_type": "gaze_detected", "details": f"{state} (conf={conf})"})
                 except Exception:
                     pass
-                self.help_state_machine.on_gaze_detected()
+                if state_machine:
+                    state_machine.on_gaze_detected()
             except Exception as e:
                 # avoid noisy prints; log the exception
                 try:
@@ -413,17 +429,21 @@ class ExperimentController:
     def _deliver_robot_response(self, response, expression):
         state_machine = getattr(self, "help_state_machine", None)
         should_restart = False
-        if state_machine and hasattr(state_machine, "stop"):
-            try:
-                state_machine.stop()
-                if self.answer_event and not self.answer_event.is_set():
-                    should_restart = True
-            except Exception:
-                pass
-        self.furhat.speak(response, wait=True)
-        if expression:
-            self.furhat.set_expression(expression)
-        self.logger.log_event({"event_type": "robot_response", "details": response})
+        self._answering_user_question.set()
+        try:
+            if state_machine and hasattr(state_machine, "stop"):
+                try:
+                    state_machine.stop()
+                    if self.answer_event and not self.answer_event.is_set():
+                        should_restart = True
+                except Exception:
+                    pass
+            self.furhat.speak(response, wait=True)
+            if expression:
+                self.furhat.set_expression(expression)
+            self.logger.log_event({"event_type": "robot_response", "details": response})
+        finally:
+            self._answering_user_question.clear()
         if should_restart and state_machine and hasattr(state_machine, "start"):
             try:
                 state_machine.start(self.answer_event)
@@ -586,14 +606,16 @@ class ExperimentController:
                 except Exception:
                     pass
             self.furhat.speak(
-                "Welcome to Who Wants to Be a Furllionaire! I'm your host, and I'm thrilled to have you here today! ",
+                "Welcome to Who Wants to Be a Furllionaire!" \
+                #"I'm your host, and I'm thrilled to have you here today! ",
                 # "Get ready for a fun and engaging experience as we test your knowledge and curiosity! "
                 # "Before we begin, here are a few instructions. "
                 # "You’ll be presented with a series of questions—read each one carefully. "
                 # "Type your answer and submit it when you’re ready. "
                 # "Don’t worry if you’re unsure—just give it your best shot! "
                 # "If you need help, just let me know. "
-                # "Are you ready? Let’s get started with your first question!",
+                # "Are you ready? Let’s get started with your first question!"
+                ,
                 wait=True
             )
         except Exception:
@@ -604,3 +626,6 @@ class ExperimentController:
                     restart_listening(self.handle_transcribed_speech)
                 except Exception:
                     pass
+
+    def is_answering_user_question(self):
+        return self._answering_user_question.is_set()
