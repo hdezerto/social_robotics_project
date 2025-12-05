@@ -185,14 +185,14 @@ class ProactiveHelpStateMachine:
     
 
 class ExperimentController:
-    def __init__(self, gui, db, furhat, llm, logger, mode, num_questions=8, check_relevance=True):
+    def __init__(self, gui, db, furhat, llm, logger, mode, check_relevance=True):
         self.gui = gui
         self.db = db
         self.furhat = furhat
         self.llm = llm
         self.logger = logger
         self.mode = mode
-        self.num_questions = num_questions
+        self.num_questions = 8 # Can later be adapted to variable number
         self.answer_event = None
         self.current_question = None
         self.check_relevance = check_relevance
@@ -604,16 +604,15 @@ class ExperimentController:
                 except Exception:
                     pass
             self.furhat.speak(
-                "Welcome to Who Wants to Be a Furllionaire!" \
-                #"I'm your host, and I'm thrilled to have you here today! ",
-                # "Get ready for a fun and engaging experience as we test your knowledge and curiosity! "
-                # "Before we begin, here are a few instructions. "
-                # "You’ll be presented with a series of questions—read each one carefully. "
-                # "Type your answer and submit it when you’re ready. "
-                # "Don’t worry if you’re unsure—just give it your best shot! "
-                # "If you need help, just let me know. "
-                # "Are you ready? Let’s get started with your first question!"
-                ,
+                "Welcome to Who Wants to Be a Furllionaire! "
+                "I'm your host, and I'm thrilled to have you here today! "
+                "Get ready for a fun and engaging experience as we test your knowledge and curiosity! "
+                "Before we begin, here are a few instructions. "
+                "You'll be presented with a series of questions—read each one carefully. "
+                "Select your answer and submit it when you're ready. "
+                "Don't worry if you're unsure—just give it your best shot! "
+                "If you need help, just let me know. "
+                "Are you ready? Let's get started with your first question!",
                 wait=True
             )
         except Exception:

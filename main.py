@@ -1,17 +1,16 @@
 
-# best voice: Graham22k_HQ
-
-# ----------------- Hyperparameters -----------------
+# best voice: Graham22k_HQ # EDIT HERE
 
 
-
-IP_ADDRESS = "192.168.1.112" # Virtual Furhat
+# ----------------- Hyperparameters EDIT HERE -----------------
+IP_ADDRESS = "192.168.1.144" # Virtual Furhat
 # IP_ADDRESS = "192.168.1.178"
 # IP_ADDRESS = "192.168.1.110"
 
-MODE = "proactive"
-# MODE = "reactive"
-NUM_QUESTIONS = 8
+MODE = "reactive"
+#MODE = "proactive"
+
+
 
 # ----------------- Main Code -----------------
 
@@ -28,21 +27,19 @@ import os
 import threading
 
 def main():
+    print(">>>>> Furllionaire Experiment. IP_ADDRESS:", IP_ADDRESS, "MODE:", MODE," <<<<<")
+
     gui = QuizWebServer()
     db = QuestionDatabase('database/questions.json')
-    # $Env:MISTRAL_LLM_API_KEY="cORAOPjkqUnzqHEh4eSGQw7Q2Fffq5iF"
-    
     furhat = FurhatAPI(IP_ADDRESS)
-
     llm = LLMAPI(api_key=os.getenv("MISTRAL_LLM_API_KEY"))
     logger = Logger('logs/experiment_log.csv')
-    controller = ExperimentController(gui, db, furhat, llm, logger, mode=MODE, num_questions=NUM_QUESTIONS, check_relevance=True)
+    controller = ExperimentController(gui, db, furhat, llm, logger, mode=MODE, check_relevance=True)
 
     controller_thread = threading.Thread(target=controller.run_experiment, name="experiment-controller", daemon=True)
     controller_thread.start()
 
     gui.start()
-
     controller_thread.join(timeout=2)
 
 
