@@ -18,6 +18,15 @@ __pycache__/
 logs/*.csv
 logs/*.log
 
+# Local media exports
+*.mp4
+*.mov
+*.m4v
+*.avi
+*.webm
+!docs/media/*.mp4
+!docs/media/*.webm
+
 # OS/editor files
 .DS_Store
 Thumbs.db

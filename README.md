@@ -9,6 +9,12 @@ This project implements a Furhat-based quiz assistant and was used to compare tw
 
 The experiment investigated whether proactive robot assistance improves user experience during a timed quiz game. In a between-subjects study with 20 participants, the reactive mode received equal or higher ratings across enjoyment, usefulness, sociability, and performance trust. Sociability showed a significant preference for reactive assistance, suggesting that proactive support needs careful timing to avoid feeling intrusive.
 
+## Demo
+
+The demo video presents the interaction flow with audio, showing the reactive assistance condition first and the proactive assistance condition second.
+
+[Watch demo video](https://hdezerto.github.io/social_robotics_project/)
+
 ## System Overview
 
 The prototype combines:
