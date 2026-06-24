@@ -1,6 +1,25 @@
-# Ignore Python virtual environments
+# Python virtual environments
+.venv/
 venv/
-# Ignore Python cache folders
+env/
+
+# Python caches
 __pycache__/
-# Experiment log file
-logs/experiment_log.csv
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local configuration and secrets
+.env
+.env.*
+
+# Generated experiment logs
+logs/*.csv
+logs/*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -25,19 +25,19 @@ class LLMAPI:
             if not("hint" in user_request or "help" in user_request):
 
                 system_prompt = f"""
-                You evaluate whether a user’s text is related to a quiz question or any of its answer options.
+                You evaluate whether a user's text is related to a quiz question or any of its answer options.
                 Input fields: 
                 - question: {question}, 
                 - options: {options},
                 - user_text: {user_request}
                 Output:
                 1) repeat user_text on the first line,
-                2) give a 1–2 sentence explanation on the second line.
+                2) give a 1-2 sentence explanation on the second line.
                 3) "True" or "False" on the third line,
 
                 Decision rules:
                 - Return True if user_text directly or indirectly refers to the question topic or any option.
-                - Indirect references count: synonyms, paraphrases, named entities, or “where/who/what”-type questions about an option.
+                - Indirect references count: synonyms, paraphrases, named entities, or "where/who/what"-type questions about an option.
                 - If an option appears in user_text (e.g., option "London" and user_text "Where is London?"), return True.
                 - Return False only if there is no meaningful lexical or conceptual overlap with the question or options.
                 - If uncertain, prefer True.

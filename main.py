@@ -13,7 +13,8 @@ import threading
 def main():
     gui = QuizGUI()
     db = QuestionDatabase('database/questions.json')
-    furhat = FurhatAPI("192.168.1.175")
+    furhat_ip = os.getenv("FURHAT_IP", "127.0.0.1")
+    furhat = FurhatAPI(furhat_ip)
     llm = LLMAPI(api_key=os.getenv("MISTRAL_LLM_API_KEY"))
     logger = Logger('logs/experiment_log.csv')
     controller = ExperimentController(gui, db, furhat, llm, logger, check_relevance=True)
