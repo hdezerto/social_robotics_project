@@ -105,6 +105,22 @@ body {
     z-index: 1;
 }
 
+.start-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 440px;
+    text-align: center;
+}
+
+.start-status {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f4f4f4;
+}
+
 .start-main-btn {
     padding: 18px 28px;
     border-radius: 12px;
@@ -114,6 +130,11 @@ body {
     font-weight: 800;
     font-size: 1.1rem;
     cursor: pointer;
+}
+
+.start-main-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* Hide the quiz UI until the user presses Start */
@@ -171,6 +192,9 @@ body {
 }
 
 .main-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     padding: 24px;
 }
 
