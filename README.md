@@ -86,6 +86,10 @@ The Flask quiz UI is served at `http://127.0.0.1:5000` by default and opens auto
 
 The project report found that proactive assistance was not perceived as more helpful or engaging in this implementation. Participants often preferred the reactive condition, and qualitative feedback pointed to mistimed interventions, missed speech inputs, and occasional over-informative hints as limitations. The main takeaway is that proactive social robot behavior depends strongly on accurate sensing and well-timed interventions.
 
+## Report
+
+For the full study design, analysis, and discussion, see the [group project report](docs/project-report.pdf).
+
 ## Contributors
 
 | Contributor | Contact |
